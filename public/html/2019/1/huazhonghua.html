@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Video视频画中画效果实例页面</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <style>
+        .container{
+            height: 2000px;
+        }
+        #video{
+            width: 960px;
+            height: 540px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <video id="video" src="/videos/fish.mp4" controls playsinline loop></video>
+    <div><input type="button" id="pipBtn" value="点击进入画中画状态"></div>
+</div>
+</body>
+<script>
+    var video = $("#video")[0]
+    var pipBtn = $("#pipBtn")[0]
+    pipBtn.addEventListener('click', function(event) {
+        // 禁用按钮，防止二次点击
+        this.disabled = true;
+        try {
+            if (video !== document.pictureInPictureElement) {
+                // 尝试进入画中画模式
+                video.requestPictureInPicture();
+            }else{
+                document.exitPictureInPicture();
+            }
+        } catch(error) {
+        } finally {
+            this.disabled = false;
+        }
+    });
+
+    // 点击切换按钮可以触发画中画模式，
+    // 在有些浏览器中，右键也可以切换，甚至可以自动进入画中画模式
+    // 因此，一些与状态相关处理需要在专门的监听事件API中执行
+    video.addEventListener('enterpictureinpicture', function(event) {
+        pipBtn.value = pipBtn.value.replace('进入', '退出');
+    });
+    // 退出画中画模式时候
+    video.addEventListener('leavepictureinpicture', function(event) {
+        pipBtn.value = pipBtn.value.replace('退出', '进入');
+    });
+    /* 特征检测 */
+    if ('pictureInPictureEnabled' in document == false) {
+        pipBtn.disabled = true;
+    }
+
+    //滚动检测进入或退出画中画
+    document.addEventListener('scroll', function(event) {
+        if(document.documentElement.scrollTop > video.offsetTop){
+            if (video !== document.pictureInPictureElement) {
+                // 尝试进入画中画模式,目前貌似只支持页面控件点击触发时间才可以调用画中画功能，滚动不行
+                // video.requestPictureInPicture();
+            }
+        }else {
+            document.exitPictureInPicture();
+        }
+    })
+
+</script>
+</html>
