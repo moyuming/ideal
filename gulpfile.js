@@ -15,7 +15,7 @@ gulp.task('server', function() {
     }).on('start', function() {
         browserSync.init({
             proxy: 'http://localhost:3000',
-            files: ["public/**/*.*", "views/**", "routes/**","index.html"],
+            files: ["public/**/*.*","index.html"],
             // 在不同浏览器上镜像点击、滚动和表单，即所有浏览器都会同步
             ghostMode: {
                 clicks: true,
@@ -29,3 +29,4 @@ gulp.task('server', function() {
         });
     });
 });
+gulp.task('default', ['server'])
