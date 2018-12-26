@@ -22,8 +22,16 @@
 </head>
 <body>
 <div>
-  <div class="red"></div>
-  <div class="right"></div>
+  <svg>
+    <symbol id="icon-plus" viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20"/>
+      <path d="M25 15 L 25 35"/>
+      <path d="M15 25 L 35 25"/>
+    </symbol>
+  </svg>
+  <p><svg class="icon"><use xlink:href="#icon-plus"></use></svg></p>
+  <p><svg class="icon scale"><use xlink:href="#icon-plus"></use></svg></p>
+
 </div>
 </body>
 <script>
