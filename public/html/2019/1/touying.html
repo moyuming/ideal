@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片投影</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/quick-layout.css">
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <script src="/js/reflection.js"></script>
+    <style>
+        /*页面滚动条出现时不跳动的终极解决方案*/
+        /*-----------start----------------*/
+        html {
+            overflow-y: scroll;
+        }
+
+        :root {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        :root body {
+            position: absolute;
+        }
+
+        body {
+            width: 100vw;
+            overflow: hidden;
+        }
+        /*-----------end----------------*/
+        .pic{
+            background: url("../img/zly.jpeg") no-repeat;
+            width: 1280px;
+            height: 960px;
+        }
+        img{
+            width: 640px;
+            height: 480px;
+        }
+        .container{
+            width: 640px;
+            height: 720px;
+            margin: auto;
+        }
+        .zxx_add_class{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="pic reflect"></div>-->
+<div class="container">
+    <img src="../img/zly.jpeg" class="reflect">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hue-rotate</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/quick-layout.css">
+    <style>
+        button{
+            margin: 5px;
+        }
+        .bird{
+            background: url('../img/piece-bird.png') no-repeat;
+            width: 300px; height: 232px;
+            background-size: contain;
+            /* 动画 */
+            animation: pulse 5s linear infinite;
+        }
+        .rgb{
+            width: 346px;
+            height: 357px;
+            background: url('../img/rgb.jpg') no-repeat;
+        }
+        @keyframes pulse {
+            from {
+                filter: hue-rotate(0);
+            }
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<button class="btn btn-blue">主按钮</button>
+<div id="hueBtnBox" class="hue-btn-box">
+    <button class="btn btn-blue" style="filter:hue-rotate(10deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(20deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(30deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(40deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(50deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(60deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(70deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(80deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(90deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(100deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(110deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(120deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(130deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(140deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(150deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(160deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(170deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(180deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(190deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(200deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(210deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(220deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(230deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(240deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(250deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(260deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(270deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(280deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(290deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(300deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(310deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(320deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(330deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(340deg);">其它色按钮</button>
+    <button class="btn btn-blue" style="filter:hue-rotate(350deg);">其它色按钮</button>
+    <div>
+        <div class="bird l"></div>
+        <div class="rgb l"></div>
+    </div>
+
+</div>
+</body>
+</html>
