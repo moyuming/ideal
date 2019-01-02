@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS前景背景自动配色</title>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/quick-layout.css">
+  <!--<link rel="stylesheet" href="/lib/DlHighlight/hl.css">-->
+  <script src="/js/jquery-1.12.4.min.js"></script>
+  <style>
+    :root {
+      /* 定义RGB变量 */
+      --red: 44;
+      --green: 135;
+      --blue: 255;
+      /* 文字颜色变色的临界值，建议0.5~0.6 */
+      --threshold: 0.5;
+      /* 深色边框出现的临界值，范围0~1，推荐0.8+*/
+      --border-threshold: 0.8;
+    }
+
+    .btn {
+      font-size: 150%;
+      padding: .5em 2em;
+    }
+    .btn {
+      /* 按钮背景色就是基本背景色 */
+      background: rgb(var(--red), var(--green), var(--blue));
+
+      /**
+       * 使用sRGB Luma方法计算灰度（可以看成亮度）
+       * 算法为：
+       * lightness = (red * 0.2126 + green * 0.7152 + blue * 0.0722) / 255
+      */
+      --r: calc(var(--red) * 0.2126);
+      --g: calc(var(--green) * 0.7152);
+      --b: calc(var(--blue) * 0.0722);
+      --sum: calc(var(--r) + var(--g) + var(--b));
+
+      --lightness: calc(var(--sum) / 255);
+
+      /**
+       * --lightness近似看成亮度，范围0~1，此时，和临界值--threshold做比较：
+       * 大于，则正数，和-999999%相乘，会得到一个巨大负数，浏览器会按照合法边界0%渲染，也就是亮度为0，于是颜色是黑色；
+       * 小于，则和-999999%相乘，会得到一个巨大的正数，以最大合法值100%渲染，于是颜色是白色；
+      */
+      color: hsl(0, 0%, calc((var(--lightness) - var(--threshold)) * -999999%));
+
+      /**
+       * 确定边框透明度。
+       * 如果亮度比--border-threshold值大，在说明按钮背景色比较淡，我们出现一个深色边框；
+       * 如果亮度比较小，说明按钮背景色较深，没有必要出现边框。
+         此时，--border-alpha计算后为负值，透明度小于0的时候，浏览器会按照0渲染，因此，边框透明。
+      */
+      --border-alpha: calc((var(--lightness) - var(--border-threshold)) * 100);
+      /* 设置边框相关样式 */
+      border: .2em solid;
+      border-color: rgba(calc(var(--red) - 50), calc(var(--green) - 50), calc(var(--blue) - 50), var(--border-alpha));
+    }
+    /*-------------------------------------------------完美分割线--------------------------------------------------------*/
+
+  </style>
+</head>
+<body>
+<button class="btn">我是按钮</button>
+
+<p>拖动滑块，改变RGB变量：</p>
+<p>R：<input type="range" min="0" max="255" value="44" name="red"></p>
+<p>G：<input type="range" min="0" max="255" value="135" name="green"></p>
+<p>B：<input type="range" min="0" max="255" value="255" name="blue"></p>
+<script>
+  var eleRanges = document.querySelectorAll('input[type="range"]');
+  Array.from(eleRanges).forEach(function (range) {
+    range.addEventListener('input', function () {
+      document.documentElement.style.setProperty('--' + this.name, this.value);
+    });
+  });
+</script>
+</body>
+</html>

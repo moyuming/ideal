@@ -26,6 +26,12 @@
 <body>
 <div id="box"></div>
 <p>调整尺寸：<input type="range" id="range" min="6" value="8" max="20"></p>
+<p class="remind">
+  备注：如果我们只是需要一个静态背景，真不如直接Canvas绘制再转换成Base64图片（toDataURL()方法）或者Blob图片（toBlob()方法）。
+  CSS Paint API的优势在于：其作为一个CSS属性值，渲染是实时的，自动跟着浏览器重绘的，因此，只要我们的绘制是和CSS变量相关联的，所有的渲染效果都会实时刷新重绘
+  <br>
+  兼容性：chrom,Opera
+</p>
 <script>
   // 第二步
   if(window.CSS){
