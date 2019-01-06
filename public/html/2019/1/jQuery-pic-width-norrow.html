@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery之图片关联伸缩效果</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/quick-layout.css">
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        #zxx_test_box{max-width:640px; _width:640px; margin:1.2em auto; padding:5em 0;}
+        .zxx_img_list{width:24.5%; height:170px; float:left;}
+        .zxx_img_1{background:gray url(/images/mm1.jpg) no-repeat;}
+        .zxx_img_2{background:gray url(/images/mm6.jpg) no-repeat;}
+        .zxx_img_3{background:gray url(/images/mm3.jpg) no-repeat;}
+        .zxx_img_4{background:gray url(/images/mm4.jpg) no-repeat;}
+    </style>
+</head>
+<body>
+<div class="zxx_main_con">
+    <ul id="zxx_test_box" class="fix">
+        <li class="zxx_img_list zxx_img_1" style="overflow: hidden; width: 24.5%; display: block;"></li>
+        <li class="zxx_img_list zxx_img_2" style="overflow: hidden; width: 24.5%; display: block;"></li>
+        <li class="zxx_img_list zxx_img_3" style="overflow: hidden; width: 24.5%; display: block;"></li>
+        <li class="zxx_img_list zxx_img_4" style="overflow: hidden; width: 24.5%; display: block;"></li>
+    </ul>
+</div>
+<script>
+    var elLists = $(".zxx_img_list");
+    elLists.mouseover(function(){
+        elLists.not($(this)).stop().animate({
+            width:"20%"
+        },500);
+        $(this).stop().animate({
+            width:"38%"
+        },500);
+    }).mouseout(function(){
+        elLists.stop().animate({
+            width:"24.5%"
+        },500);
+    });
+</script>
+</body>
+</html>
