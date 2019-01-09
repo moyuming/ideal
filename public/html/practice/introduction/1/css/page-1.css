@@ -1,0 +1,39 @@
+.item-1 .word {
+  margin-top: -10%;
+}
+.item-1 .word>span:first-child {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+  color: #0A9676;
+  text-shadow: 5px -2px 8px #151414;
+}
+.item-1 .word>span.hidden-xs,
+.item-1 .word>span.col-xs-12{
+  color: #B6BF31;
+  text-shadow: 9px -2px 15px #000;
+}
+.item-1 .motto {
+  font-size: 25px;
+}
+.item-1 .next-page {
+  color: yellowgreen;
+  position: absolute;
+  margin-left: -35px;
+  left: 50%;
+  bottom: 10%;
+  border: 2px solid rgba(255,255,255,.2);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  line-height: 80px;
+  overflow: hidden;
+  background: rgba(0,0,0,.2);
+  transition: 1s all ease;
+  -webkit-transition: 1s all ease;
+  animation: fadeInUp 2s ease;
+}
+.item-1 .next-page span{
+  animation: nextPage 2s linear infinite;
+  font-size: 30px;
+}
