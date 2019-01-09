@@ -1,0 +1,18 @@
+.item-1 .word {
+  /*margin-top: -10%;*/
+}
+.item-1 .word>span:first-child {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+  color: #0A9676;
+  text-shadow: 5px -2px 8px #151414;
+}
+.item-1 .word>span.hidden-xs,
+.item-1 .word>span.col-xs-12{
+  color: #B6BF31;
+  text-shadow: 9px -2px 15px #000;
+}
+.item-1 .motto {
+  font-size: 25px;
+}
