@@ -37,3 +37,51 @@
   animation: nextPage 2s linear infinite;
   font-size: 30px;
 }
+.item-1 .corner1, .item-1 .corner2, .item-1 .corner3, .item-1 .corner4 {
+  max-width: 72px;
+  min-width: 50px;
+  width: 5%;
+  position: absolute;
+}
+.item-1  .corner1{
+  left: 10%;
+  top: 10%;
+  animation: corner1 1s ease;
+  -webkit-animation: corner1 1s ease;
+  transform-origin: 0;
+  -webkit-transform-origin: 0;
+}
+
+.item-1 .corner2{
+  left: 10%;
+  bottom: 10%;
+  animation: corner2 1s ease;
+  -webkit-animation: corner2 1s ease;
+  transform-origin: 0;
+  -webkit-transform-origin: 0;
+}
+.item-1 .corner3{
+  right: 10%;
+  top: 10%;
+  animation: corner3 1s ease;
+  -webkit-animation: corner3 1s ease;
+}
+
+.item-1 .corner4{
+  right: 10%;
+  bottom: 10%;
+  animation: corner4 1s ease;
+  -webkit-animation: corner4 1s ease;
+
+}
+.word>span:nth-child(1),
+.word>span:nth-child(2){
+  display: inline-block;
+  -webkit-animation: fadeInDownBig 2s ease;
+  animation: fadeInDownBig 2s ease;
+}
+
+.word p{
+  -webkit-animation: p-fly 2s ease;
+  animation: p-fly 2s ease;
+}

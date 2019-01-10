@@ -56,13 +56,4 @@
   background-color:#0F698A ;
   text-decoration: none;
 }
-.navbar-default .navbar-toggle {
-  background-color: #122b40;
-}
-.navbar-default .navbar-toggle:focus{
-  background-color: #122b40;
-}
-.navbar-default .navbar-toggle:hover {
-  background-color: #122b40;
-}
 /********************导航条End***************************************/
