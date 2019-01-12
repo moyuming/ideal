@@ -12,6 +12,19 @@ $(function () {
   document.onmouseup=function () {
     document.onmousemove = null;
   }
+  var $container = $('.portfolio-items');
+  setTimeout(function () {
+      //isotope分类过滤和排序插件
+      $container.isotope({
+          itemSelector : '.portfolio-items > div',
+          animationOptions: {
+              duration: 750,
+              easing: 'linear',
+              queue: true
+          }
+      });
+  },1000)
+  project_info();
   // 文档：https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese
   $('#resume').fullpage({
     // -------------导航
@@ -35,6 +48,7 @@ $(function () {
     scrollOverflow: false,
     // 定义水平滑块是否在到达上一张或上一张幻灯片后循环
     loopHorizontal: false,
+    controlArrows: true,
     // 左右滑块颜色
     controlArrowColor:'#16BA9D',
 
@@ -45,15 +59,123 @@ $(function () {
     // 这个回调在页面结构生成后立即被触发
     afterRender: function () {
       // page4 透明背景
+      $('item-4').css('background', 'rgba(255, 255, 255, .1)');
+      //侧边导航事件
+      var Tooltips = ['个人简历', '基本资料', '专业技能', '工作经历', '项目经验', '自我评价'];
+      $("#fp-nav ul li").each(function (index) {
+        this.dataset['toggle'] = 'tooltip';
+        this.dataset['placement'] = 'left';
+        $(this).attr('title', Tooltips[index])
+      })
+      $('[data-toggle="tooltip"]').tooltip();
+
+      // 顶部导航栏自动会拉事件(移動端)
+      if ($('.navbar-toggle').css('display') == 'block') {
+        $('.navbar-collapse li').on('click', function () {
+          $('.navbar-toggle').trigger('click');
+        });
+      }
+
+      $('#fp-nav').addClass('hidden-xs');
+      // 为了避免标签太多同一时间加载的话在刚载入页面时候产生怪异感，所有动画元素初始都是hidden的
+
+      $('.item-1 .next-page').on('click', function () {
+        $.fn.fullpage.moveSectionDown();
+      });
+      setTimeout(function () {
+        $('.item-1 .corner').show();
+        $('.resume-hide').show();
+      }, 500);
     },
     // 一旦用户离开某个节，过渡到新节，就会触发此回调。 返回“false”将在移动发生之前取消移动。
-    onLeave: function (index, nextIndex, direction) {
+    onLeave: function (from, to, direction) {
+      var index = from.index
+      var nextIndex = to.index
+      if(nextIndex==4){
+        $('.pure').hide();
+        $('.sky').show();
+      }
 
+      if(nextIndex==6){
+        $('.sky').hide();
+      }else {
+        $('.item-6 .top').animate({'height': '50%'},400);
+        $('.item-6 .foot').animate({'height': '50%'},400);
+      }
+
+
+      switch (index) {
+        case 0:
+          $('.item-1 .corner').hide();
+          $('.resume-hide').hide();
+          $('.navbar').removeClass('black');
+
+          break;
+
+        case 1:
+          if (direction == 'down') {
+            $('.item-2 .icon-infomation').addClass('zoomOutUp');
+            setTimeout(function () {
+              $('.item-2 .icon-infomation').removeClass('zoomOutUp');
+              $('.item-2 .container').hide();
+            }, 500);
+          } else {
+            $('.item-2 .container').hide();
+          }
+          break;
+
+        case 2:
+          $('.item-3 .container').hide();
+          $('.navbar').removeClass('blue');
+          break;
+
+        case 3:
+        {
+          $('.item-4 .container').hide();
+          break;
+        }
+        case 5:{
+
+        }
+      }
     },
 
     // 滚动结束之后，一旦加载了节，就会触发回调
-    afterLoad: function (anchorLink, index) {
+    afterLoad: function (from, to) {
+      var index = to.index
+      var anchorLink = to.anchor
+      if(index==5)
+        $('.pure').show();
 
+      switch (anchorLink) {
+        case 'page1':
+          $('.item-1 .corner').show();
+          $('.resume-hide').show();
+          $('.navbar').addClass('black');
+          break;
+        case 'page2':
+          $('.item-2 .container').show();
+          break;
+        case 'page3':
+          $('.navbar').addClass('blue');
+          $('.item-3 .container').show();
+
+          break;
+        case 'page4':
+          $('.item-4 .container').show();
+          break;
+
+        case 'page5':
+          break;
+
+        case 'page6':
+          setTimeout(function () {
+            $('.item-6 .top').animate({'height': '30%'},400);
+            $('.item-6 .foot').animate({'height': '30%'},400);
+          },500)
+
+          break;
+      }
     },
 
     // 一旦用户离开幻灯片转到另一个幻灯片，就会触发此回调，返回false将在移动发生之前取消移动。

@@ -13,9 +13,12 @@
   <link rel="stylesheet" href="./css/background.css"/>
 
   <script src="/lib/jquery/jquery-1.12.4.min.js"></script>
+  <script src="/lib/jquery/plugin/jquery.isotope.js"></script>
   <!-- 以下行是可选的。 只有在使用选项css3:false，并且您希望使用其他缓动效果，而非“linear”、“swing”或“easeInOutCubic”时才有必要。 -->
-  <script src="/lib/fullPage/easings.js"></script>
+  <script src="/lib/jquery/plugin/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/lib/fullPage/fullpage.js"></script>
+  <script type="text/javascript" src="/lib/bootstrap3.3.6/js/bootstrap.js"></script>
+  <script src="./handler.js"></script>
   <script src="./resumeEnter.js"></script>
 </head>
 <body>
@@ -45,6 +48,14 @@
     </div>
   </div>
 </nav>
+<div class="guns sky">
+  <div class="clouds_one"></div>
+  <div class="clouds_two"></div>
+  <div class="clouds_three"></div>
+</div>
+<div class="pure">
+
+</div>
 <div id="resume">
   <div class="section item-1">
     <div class="row word">
@@ -234,6 +245,190 @@
       </div>
 
     </div>
+  </div>
+  <div class="section item-5">
+    <!--第一屏-->
+    <div class="slide">
+      <div class="container" id='container-img'>
+        <div class="row">
+          <div class="portfolio-items">
+            <div class="col-sm-6 col-md-3 col-lg-3 web">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href='#' target='_blank' title="智能家居">智能家居</a></h4>
+                    <small>技术：html+css+js</small>
+                  </div>
+                  <img src="./images/01.jpg" class="img-responsive" alt="智能家居">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href="#" target='_blank' title="安杰">安杰</a></h4>
+                    <small>技术：HTML+CSS+JQuery</small>
+                  </div>
+                  <img src="./images/02.jpg" class="img-responsive" alt=""></div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href="#" target='_blank' title="金融圈">金融圈</a></h4>
+                    <small>技术：Bootstrap+JQuery</small>
+                  </div>
+                  <img src="./images/03.jpg" class="img-responsive" alt="金融圈"></div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href='#' target='_blank' title="">电商活动页面</a></h4>
+                    <small>技术：Bootstrap+JQuery</small>
+                  </div>
+                  <img src="./images/04.jpg" class="img-responsive" alt=""></div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-3">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href='#' target='_blank' title="">装饰用</a></h4>
+                    <small>技术：HTML+CSS+JQuery</small>
+                  </div>
+                  <img src="./images/05.jpg" class="img-responsive" alt="装饰用">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-3">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href="javascript:;" target='_blank' title="D">装饰用</a></h4>
+                    <small>技术：Bootstrap+JQuery</small>
+                  </div>
+                  <img src="./images/06.jpg" class="img-responsive" alt="装饰用"></div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-3">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href="javascript:;" target='_blank' title="个人博客">个人博客</a></h4>
+                    <small>技术：HTMl+CSS+JS+Wordpress</small>
+                  </div>
+                  <img src="./images/07.jpg" class="img-responsive" alt="个人博客"></div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-3">
+              <div class="portfolio-item">
+
+                <div class="hover-bg">
+                  <div class="hover-text">
+                    <h4><a href='javascript:;' target='_blank' title="软装大师">软装大师 </a></h4>
+                    <small>技术：Bootstrap+JQuery</small>
+                  </div>
+                  <img src="./images/08.jpg" class="img-responsive" alt="软装大师">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--第二屏-->
+    <div class="slide">
+      <div class="rotator">
+        <div id="rot1">
+          <img src="" width="800" height="300" class="bg" alt=""/>
+          <div class="heading">
+            <h1></h1>
+          </div>
+          <div class="description">
+            <p></p>
+          </div>
+        </div>
+        <ul id="rotmenu">
+          <li>
+            <a href="#">Flappy Bird</a>
+            <div style="display:none;">
+              <div class="info_image">1.jpg</div>
+              <div class="info_heading">Flappy Bird</div>
+              <div class="info_description">
+                通过面向对象封装方法，利用canvas绘制。
+                手机可以玩。
+                <br><a href="http://chenjichuan.cn/bird.html" target= _blank class="more">play</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#">cart</a>
+            <div style="display:none;">
+              <div class="info_image">2.jpg</div>
+              <div class="info_image">Add to cart</div>
+              <div class="info_description">
+                电商的添加到购物车模型，符合大部分电商场景
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#">Fall</a>
+            <div style="display:none;">
+              <div class="info_image">3.jpg</div>
+              <div class="info_description">
+                瀑布流布局，同时具备响应式，延迟加载等提高用户体验场景。
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#">view</a>
+            <div style="display:none;">
+              <div class="info_image">4.jpg</div>
+              <div class="info_heading">view</div>
+              <div class="info_description">
+                有趣儿的小东西，添加大图后可以实现全景浏览
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#">Full page</a>
+            <div style="display:none;">
+              <div class="info_image">5.jpg</div>
+              <div class="info_description">
+                主流的商家活动推广页面应用场景，全屏浏览同时，分页分屏展示。
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section item-6">
+    <h1>Focus Me</h1>
+    <div class="word">
+      <p>
+        有责任，工作踏实，性格开朗乐观，积极上进。
+      </p>
+    </div>
+    <div class="word">
+      <p>
+        易和人相处，拥有良好的亲和力。<br>
+      </p>
+    </div>
+    <div class="word">
+      <p>
+        喜欢js，非常热爱编程，喜欢钻研新的技术，</br>具有很强的自学能力和良好的学习方法，喜欢研究各种新的框架。
+      </p>
+    </div>
+    <div class="top"></div>
+    <div class="foot"></div>
   </div>
 </div>
 </body>

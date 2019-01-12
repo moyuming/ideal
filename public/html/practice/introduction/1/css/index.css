@@ -57,3 +57,34 @@
   text-decoration: none;
 }
 /********************导航条End***************************************/
+/********************右侧导航栏*************************************/
+
+#fp-nav{
+  top: 80%;
+}
+
+#fp-nav ul li{
+  vertical-align: middle;
+  margin: 10px 50px 0 ;
+}
+#fp-nav li .active {
+  background-position: 0 bottom;
+}
+#fp-nav ul li a {
+  display: block;
+  color: #8F9DA4;
+  width: 21px;
+  height: 21px;
+  background: url(../images/dot.png) 5px 5px no-repeat;
+  /*right: 0;*/
+}
+#fp-nav span {
+  display: none;
+}
+
+
+/****************************右侧导航栏End******************************/
+
+
+
+
