@@ -9,7 +9,6 @@
     position: absolute;
     top: 0;
     z-index: 10;
-    display: none;
 }
 
 .item-6 .foot{
@@ -19,7 +18,6 @@
     position: absolute;
     bottom: 0;
     z-index: 10;
-    display: none;
 }
 .item-6 .word {
     font-size: 20px;

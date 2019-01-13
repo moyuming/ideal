@@ -76,9 +76,6 @@ $(function () {
         });
       }
 
-      $('#fp-nav').addClass('hidden-xs');
-      // 为了避免标签太多同一时间加载的话在刚载入页面时候产生怪异感，所有动画元素初始都是hidden的
-
       $('.item-1 .next-page').on('click', function () {
         $.fn.fullpage.moveSectionDown();
       });
@@ -91,16 +88,23 @@ $(function () {
     onLeave: function (from, to, direction) {
       var index = from.index
       var nextIndex = to.index
-      if(nextIndex==4){
-        $('.pure').hide();
+      if(nextIndex==3){
         $('.sky').show();
+      }else{
+        setTimeout(function () {
+          $('.sky').hide();
+        },500)
       }
 
-      if(nextIndex==6){
-        $('.sky').hide();
-      }else {
+      if(nextIndex==5){
+        $('.pure').show();
         $('.item-6 .top').animate({'height': '50%'},400);
         $('.item-6 .foot').animate({'height': '50%'},400);
+      }else {
+        setTimeout(function () {
+          $('.pure').hide();
+        },500)
+
       }
 
 
@@ -113,29 +117,24 @@ $(function () {
           break;
 
         case 1:
-          if (direction == 'down') {
-            $('.item-2 .icon-infomation').addClass('zoomOutUp');
-            setTimeout(function () {
-              $('.item-2 .icon-infomation').removeClass('zoomOutUp');
-              $('.item-2 .container').hide();
-            }, 500);
-          } else {
+          setTimeout(function () {
             $('.item-2 .container').hide();
-          }
+          }, 500);
           break;
 
         case 2:
-          $('.item-3 .container').hide();
+          setTimeout(function () {
+            $('.item-3 .container').hide();
+          }, 500);
           $('.navbar').removeClass('blue');
           break;
 
         case 3:
         {
-          $('.item-4 .container').hide();
+          setTimeout(function () {
+            $('.item-4 .container').hide();
+          }, 500);
           break;
-        }
-        case 5:{
-
         }
       }
     },

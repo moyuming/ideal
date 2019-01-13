@@ -106,19 +106,14 @@
     margin-bottom: 20px;;
 }
 .skill-introduce .media:nth-child(1) {
-    /*opacity: 0;*/
     animation: bounceInLeft 2s linear forwards;
     -webkit-animation: bounceInLeft 2s linear forwards;
 }
 .skill-introduce .media:nth-child(2) {
-    /*opacity: 0;*/
     animation: bounceInRight 2s linear forwards;
     -webkit-animation: bounceInRight 2s linear forwards;
-    -webkit-animation-delay:1s ;
 }
 .skill-introduce .media:nth-child(3) {
-    /*opacity: 0;*/
     animation: bounceInDown 2s linear forwards;
     -webkit-animation: bounceInDown 2s linear forwards;
-    -webkit-animation-delay: 2s;
 }
