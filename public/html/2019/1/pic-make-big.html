@@ -126,16 +126,19 @@
     var src = $(this).find('img').prop('src');
     //改变大图src
     $show.css('backgroundImage' , 'url('+src+')');
+    //设置图片宽高
     $picImg.prop({
       src : src,
       width : imgArr[index].width * 400,
       height : imgArr[index].height * 400
     });
+    //设置图片相对位置
     $picCover.css({
       top : (400 - imgArr[index].height * 400 ) / 2,
       left : (400 - imgArr[index].width * 400 ) / 2
     });
     var a = 400*$picCover.width() / imgArr[index].imgW + 'px'
+    //设置放大镜的宽高
     $cover.css({
       width : a,
       height : a
@@ -157,20 +160,16 @@
     minusX = Math.min( minusX , $picCover.width() - $cover.width() );
     minusY = Math.max( minusY , 0 );
     minusY = Math.min( minusY , $picCover.height() - $cover.height() );
+    //定位放大镜
     $cover.css({
       left : minusX + 'px',
       top : minusY + 'px'
     });
+    //改变原始大图的背景位置
     $show.css('backgroundPosition' ,(-(minusX/$picCover.width())*imgArr[index].imgW) +'px '+ (-(minusY/$picCover.height())*imgArr[index].imgH) +'px');
   }).mouseleave(function(){
     $cover.hide();
     $show.hide();
-  });
-  $show.mouseover(function(){
-    $cover.hide();
-    $(this).hide();
-  }).mousemove(function(){
-    return false;
   });
   function init() {
     $tabLiImg.each(function (i) {
