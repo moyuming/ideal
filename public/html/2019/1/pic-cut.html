@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>图片裁剪</title>
+</head>
+<body>
+<p>
+  <button id="cropBeginBtn">图片处理</button>
+</p>
+<img id="cropTestImg" src="/images/big/mm1.jpg"/>
+<p><button id="cropEndBtn" style="display:none; position:relative; z-index:1;">确认处理</button></p>
+<script type="text/javascript" src="/js/zxx.crop_rotation.js"></script>
+<script type="text/javascript">
+  window.onload = function(){
+    var oImg = document.getElementById("cropTestImg");
+    var oEndBtn = document.getElementById("cropEndBtn");
+    document.getElementById("cropBeginBtn").onclick = function(){
+      fnImageCropRot(oImg);
+      oEndBtn.style.display = "inline-block";
+    };
+    oEndBtn.onclick = function(){
+      var x = document.getElementById("cropPosX").value, y = document.getElementById("cropPosY").value, w = document.getElementById("cropImageWidth").value, h = document.getElementById("cropImageHeight").value, angle = document.getElementById("zxxRotAngle").value;
+      if(angle === ""){
+        angle = 0;
+      }
+      alert("角度："+angle+"\n剪裁横坐标："+x+"\n剪裁纵坐标："+y+"\n剪裁宽度："+w+"\n剪裁高度："+h);
+    };
+  };
+</script>
+</body>
+</html>
