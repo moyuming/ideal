@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>图片裁剪</title>
+  <link type="text/css" rel="stylesheet" href="/lib/jquery/plugin/jcrop/css/jquery.Jcrop.css">
+  <script type="text/javascript" src="/lib/jquery/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="/lib/jquery/plugin/jcrop/js/jquery.Jcrop.js"></script>
+  <script type="text/javascript">
+    window.onload = function(){
+      var oImg = document.getElementById("cropTestImg");
+      var confirmBtn = document.getElementById("confirmBtn");
+      var instance
+      var record
+      document.getElementById("cropBeginBtn").onchange = function(event){
+        if(instance){
+          instance.destroy()
+        }
+        var file = event.target.files
+        var reader = new FileReader()
+        reader.readAsDataURL(file[0])
+        reader.onload = function () {
+          var url  = reader.result
+          var img = new Image()
+          img.src = url
+          img.onload=function () {
+            oImg.src = url
+            oImg.onload = function () {
+              instance = $.Jcrop(oImg,{
+                allowSelect:false,
+                allowMove: true,
+                allowResize: false,
+                handleSize: 9,
+                boxHeight:img.width,
+                boxWidth:img.height,
+                trueSize:[img.width,img.height],//设置真是图像大小
+                onChange:showPreview,
+                onSelect:showPreview
+                // setSelect:   [ 100,100,300,300 ],//固定裁剪大小
+              });
+              instance.setSelect([ img.width*0.5-50,img.height*0.5-50,img.width*0.5+50,img.height*0.5+50])
+            }
+          }
+        }
+      };
+      confirmBtn.onclick = function(){
+        var x = record.x, y = record.y, w = record.w, h = record.h
+
+        alert("剪裁横坐标："+x+"\n剪裁纵坐标："+y+"\n剪裁宽度："+w+"\n剪裁高度："+h);
+      };
+      //简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
+      function showPreview(coords){
+        record = coords
+      }
+      /*oEndBtn.onclick = function(){
+        var x = document.getElementById("cropPosX").value, y = document.getElementById("cropPosY").value, w = document.getElementById("cropImageWidth").value, h = document.getElementById("cropImageHeight").value, angle = document.getElementById("zxxRotAngle").value;
+        if(angle === ""){
+          angle = 0;
+        }
+        alert("角度："+angle+"\n剪裁横坐标："+x+"\n剪裁纵坐标："+y+"\n剪裁宽度："+w+"\n剪裁高度："+h);
+      };*/
+    };
+  </script>
+</head>
+<body>
+<p>
+  <input type="file" id="cropBeginBtn" accept="image/jpg,image/jpeg,image/png"/>
+</p>
+<img id="cropTestImg"/>
+<p>
+  <button id="confirmBtn" style="position:relative; z-index:1;">确认裁剪</button>
+</p>
+</body>
+</html>
