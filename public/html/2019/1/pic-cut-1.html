@@ -31,8 +31,8 @@
                 allowMove: true,
                 allowResize: false,
                 handleSize: 9,
-                boxHeight:img.width,
-                boxWidth:img.height,
+                boxHeight:img.height,
+                boxWidth:img.width,
                 trueSize:[img.width,img.height],//设置真是图像大小
                 onChange:showPreview,
                 onSelect:showPreview
@@ -52,13 +52,6 @@
       function showPreview(coords){
         record = coords
       }
-      /*oEndBtn.onclick = function(){
-        var x = document.getElementById("cropPosX").value, y = document.getElementById("cropPosY").value, w = document.getElementById("cropImageWidth").value, h = document.getElementById("cropImageHeight").value, angle = document.getElementById("zxxRotAngle").value;
-        if(angle === ""){
-          angle = 0;
-        }
-        alert("角度："+angle+"\n剪裁横坐标："+x+"\n剪裁纵坐标："+y+"\n剪裁宽度："+w+"\n剪裁高度："+h);
-      };*/
     };
   </script>
 </head>

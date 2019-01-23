@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>文字放大显示动画效果</title>
+  <style>
+    a:link, a:visited {
+      color: #0082CB;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<strong style="position:relative; width:46px; height:28px; line-height:28px;">
+  <a href="javascript:void(0);" id="sendNum">166</a>
+  <a href="#no" id="absNum" style="position:absolute; width:46px; height:28px; left:0; top:0; display:none;"></a>
+</strong>
+<br>
+<button id="add">
+  +1
+</button>
+</body>
+<script>
+  var sendNum = document.getElementById("sendNum")
+  var absNum = document.getElementById("absNum")
+  var btn = document.getElementById('add')
+  btn.onclick = function () {
+    number(absNum, sendNum, 18, 26);
+  };
+  var number = function (node, aim, minnum, maxnum) {
+    var num = parseInt(aim.innerHTML, 10);
+    aim.style.zoom = 1;
+    node.style.display = "inline-block";
+    node.innerHTML = num;
+    var fontSize = minnum;
+    var opacity = 1;
+    var step = function () {
+      fontSize += 1;
+      opacity -= 0.09;
+      node.style.fontSize = fontSize + "px";
+      node.style.opacity = opacity;
+      aim.style.opacity = opacity;
+      node.style.filter = "Alpha(opacity=" + opacity * 100 + ")";
+      aim.style.filter = "Alpha(opacity=" + opacity * 100 + ")";
+      node.style.zoom = 1;
+      if (fontSize < maxnum) {
+        setTimeout(step, 40);
+      } else {
+        num += 1;
+        node.innerHTML = num;
+        aim.innerHTML = num;
+        setTimeout(step2, 40);
+      }
+    };
+    setTimeout(step, 10);
+    var step2 = function () {
+      fontSize -= 1;
+      opacity += 0.09;
+      node.style.fontSize = fontSize + "px";
+      node.style.opacity = opacity;
+      aim.style.opacity = opacity;
+      node.style.filter = "Alpha(opacity=" + opacity * 100 + ")";
+      aim.style.filter = "Alpha(opacity=" + opacity * 100 + ")";
+      if (fontSize > minnum) {
+        setTimeout(step2, 40);
+      } else {
+        node.style.display = "none";
+      }
+    };
+  };
+</script>
+</html>
