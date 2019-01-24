@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta content="text/html;charset=UTF-8">
+  <title>渐变虚框及边框滚动动画</title>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <style>
+    .box1 {
+      width: 200px;
+      height: 150px;
+      box-sizing: border-box;
+    }
+
+    .box1 {
+      background: linear-gradient(to bottom, #34538b, #cd0000) no-repeat;
+      -webkit-mask-image: linear-gradient(to right, #000 6px, transparent 6px), linear-gradient(to bottom, #000 6px, transparent 6px), linear-gradient(to right, #000 6px, transparent 6px), linear-gradient(to bottom, #000 6px, transparent 6px);
+      -webkit-mask-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+      -webkit-mask-position: 0 0, 0 0, 0 100%, 100% 0;
+      -webkit-mask-size: 8px 2px, 2px 8px, 8px 2px, 2px 8px;
+      /* 合并写法 */
+      mask: linear-gradient(to right, #000 6px, transparent 6px) repeat-x,
+      linear-gradient(to bottom, #000 6px, transparent 6px) repeat-y,
+      linear-gradient(to right, #000 6px, transparent 6px) repeat-x 0 100%,
+      linear-gradient(to bottom, #000 6px, transparent 6px) repeat-y 100% 0;
+      mask-size: 8px 2px, 2px 8px, 8px 2px, 2px 8px;
+    }
+
+    .box2 {
+      width: 200px;
+      background: repeating-linear-gradient(135deg, transparent, transparent 3px, #000 3px, #000 8px);
+      animation: shine 1s infinite linear;
+      overflow: hidden;
+    }
+
+    .content {
+      height: 128px;
+      margin: 2px;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: -1px -1px;
+      }
+      100% {
+        background-position: -8px -8px;
+      }
+    }
+
+    .coop-list {
+      position: relative;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .topBorder-move {
+      position: relative;
+      /*left: 1500px;*/
+      width: 4000px;
+      border-top: 2px dashed #000;
+    }
+
+    .bottomBorder-move {
+      position: relative;
+      /*left: 1500px;*/
+      width: 4000px;
+      border-top: 2px dashed #000;
+    }
+
+    .leftBorder-move {
+      position: absolute;
+      /*top: 1500px;*/
+      width: 1px;
+      height: 4000px;
+      border-left: 2px dashed #000;
+    }
+
+    .rightBorder-move {
+      position: absolute;
+      right: 0;
+      top: 0px;
+      width: 1px;
+      height: 4000px;
+      border-right: 2px dashed #000;
+    }
+  </style>
+</head>
+<body>
+<div class="header">CSS遮罩实现精致的渐变虚框</div>
+<div class="box1">
+  <div style="position: absolute">内容占位</div>
+</div>
+<div class="header">纯CSS实现边框滚动</div>
+<div class="box2">
+  <div class="content">内容占位</div>
+</div>
+<div class="header">js实现边框滚动</div>
+<div class="coop-list">
+  <div class="topBorder-move" id="J_borTop"></div>
+  <div class="leftBorder-move" id="J_borLeft"></div>
+  <div class="content">内容占位</div>
+  <div class="rightBorder-move" id="J_borRight"></div>
+  <div class="bottomBorder-move" id="J_borBottom"></div>
+</div>
+</body>
+<script>
+  function getStyleValue(ele,attr){
+    var doc=document;
+    var style=ele.currentStyle||doc.defaultView.getComputedStyle(ele,null);
+    return parseInt(style[attr].replace(/px/g,""));
+  }
+  var borTop = document.getElementById("J_borTop")
+  var borBottom = document.getElementById("J_borBottom")
+  var borLeft = document.getElementById("J_borLeft")
+  var borRight = document.getElementById("J_borRight")
+  var leftvalue = getStyleValue(borTop, 'left')
+  var topvalue = getStyleValue(borLeft, 'top')
+  setInterval(function () {
+    if (leftvalue < 0) {
+      leftvalue += 2;
+      borRight.style.top = leftvalue + "px";
+      borTop.style.left = leftvalue + "px";
+    } else {
+      leftvalue = -1500
+    }
+    if (topvalue > -1500) {
+      topvalue -= 2;
+      borBottom.style.left = topvalue + "px";
+      borLeft.style.top = topvalue + "px";
+    } else {
+      topvalue = 0;
+    }
+  }, 60);
+</script>
+</html>
