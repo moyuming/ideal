@@ -28,8 +28,10 @@
 
     .box2 {
       width: 200px;
-      background: repeating-linear-gradient(135deg, transparent, transparent 3px, #000 3px, #000 8px);
-      animation: shine 1s infinite linear;
+      background: url("/images/selection-big.gif");
+      background-size: 12px 12px;
+      /*background: repeating-linear-gradient(135deg, transparent, transparent 3px, #000 3px, #000 8px);*/
+      /*animation: shine 1s infinite linear;*/
       overflow: hidden;
     }
 
@@ -48,7 +50,25 @@
         background-position: -8px -8px;
       }
     }
-
+    .box3 {
+      display: inline-block;
+      width: 200px;
+      height: 150px;
+      position: relative;
+    }
+    .box3::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      border: 2px solid #cd0000;
+      animation: borderAround 1.5s infinite linear;
+    }
+    @keyframes borderAround {
+      0%, 100% { clip: rect(0 200px 2px 0); }
+      25% { clip: rect(0 200px 150px 198px); }
+      50% { clip: rect(148px 200px 150px 0); }
+      75% { clip: rect(0 2px 150px 0); }
+    }
     .coop-list {
       position: relative;
       overflow: hidden;
@@ -94,6 +114,10 @@
 </div>
 <div class="header">纯CSS实现边框滚动</div>
 <div class="box2">
+  <div class="content">内容占位</div>
+</div>
+<div class="header">边框loading效果</div>
+<div class="box3">
   <div class="content">内容占位</div>
 </div>
 <div class="header">js实现边框滚动</div>
