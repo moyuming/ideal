@@ -1,7 +1,7 @@
 /* by zhangxinxu 2010-07-27
 * http://www.zhangxinxu.com/
 * 用例：https://www.zhangxinxu.com/wordpress/2010/07/%E5%9B%A2%E8%B4%AD%E7%B1%BB%E7%BD%91%E7%AB%99%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84js%E5%AE%9E%E7%8E%B0/
-* 倒计时的实现
+* 倒计时的实现，每个月的秒数以平均值来计算，满足大部分情况下使用，如果要精确显示还剩多少年月日，可以配合moment.js的时差diff函数计算
 */
 var fnTimeCountDown = function (d, o) {
   var f = {

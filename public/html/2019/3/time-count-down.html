@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>购物类网站倒计时实现</title>
+  <script src="/js/timeCountDown.js"></script>
+  <style type="text/css">
+    .time_x{
+      background-color: #D1D3D0;
+      height: 30px;
+      line-height: 30px;
+      padding: 0px 5px;
+      float: left;
+      vertical-align: middle;
+    }
+    span{
+      text-align: center;
+      display: inline-block;
+      width: 35px;
+      line-height: 24px;
+      background-color: #fff;
+      margin-right: 5px;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+<div class="time_x">
+  <span id="year"></span>年
+  <span id="month"></span>月
+  <span id="day"></span>天
+  <span id="hour"></span>小时
+  <span id="mini"></span>分
+  <span id="sec"></span>秒
+</div>
+</body>
+<script type="text/javascript">
+  var zxx = {
+    $: function(id){
+      return document.getElementById(id);
+    },
+    futureDate: Date.UTC(2050, 3, 1, 12),
+    obj: function(){
+      return {
+        sec: zxx.$("sec"),
+        mini: zxx.$("mini"),
+        hour: zxx.$("hour"),
+        day: zxx.$("day"),
+        month: zxx.$("month"),
+        year: zxx.$("year")
+      }
+    }
+  };
+  fnTimeCountDown(zxx.futureDate, zxx.obj());
+</script>
+</html>

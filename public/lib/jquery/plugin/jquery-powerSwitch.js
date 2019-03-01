@@ -286,7 +286,6 @@
 			}			
 		}
 	});
-	
 	$.fn.powerSwitch = function(options) {
 		// 默认参数
 		var defaults = {
