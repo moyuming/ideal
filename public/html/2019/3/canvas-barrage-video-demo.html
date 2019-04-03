@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>弹幕实例</title>
+  <style>
+    .video-x {
+      position: relative;
+      width: 640px;
+      margin: auto;
+    }
+    form{
+      width: 640px;
+      margin: auto;
+    }
+    .video-x video {
+      background-color: black;
+      outline: 1px solid #eee;
+      width: 640px;
+    }
+    .canvas-barrage {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    input[type="range"] {
+      vertical-align: middle;
+      margin-right: 50px;
+    }
+    .ui-radio + label {
+      margin-left: 5px;
+      margin-right: 20px;
+    }
+    input[type="submit"] {
+      margin-left: 10px;
+      margin-right: 50px;
+    }
+    [disabled] {
+      pointer-events: none;
+      opacity: .4;
+    }
+    .last {
+      border-top: 1px solid #eee;
+      margin-top: 1.5em;
+      padding-top: 2em;
+    }
+  </style>
+</head>
+<body>
+<div class="demo">
+  <div class="video-x">
+    <canvas id="canvasBarrage" class="canvas-barrage"></canvas>
+    <video id="videoBarrage" src="/videos/fish.mp4" controls=""></video>
+    <!--<form id="barrageForm" action="barrage.php" method="post" autocomplete="off">-->
+
+    <!--<form id="barrageForm" action="barrage.php" method="post" autocomplete="off">
+      <p>透明度(0-100)：
+      <div class="range ui-range" style="width: 129px;">
+        <div class="ui-range-track" style="border-left-width: 129px;"><a class="ui-range-thumb" href="javascript:"
+                                                                         aria-valuenow="100" aria-valuemax="100"
+                                                                         aria-valuemin="0" role="slider"
+                                                                         draggable="false"></a></div>
+      </div>
+      <input type="range" class="range" name="opacity" value="100" min="0" max="100"> 文字大小(16-32)：
+      <div class="range ui-range" style="width: 129px;">
+        <div class="ui-range-track" style="border-left-width: 64.5px;"><a class="ui-range-thumb" href="javascript:"
+                                                                          aria-valuenow="24" aria-valuemax="32"
+                                                                          aria-valuemin="16" role="slider"
+                                                                          draggable="false"></a></div>
+      </div>
+      <input type="range" class="range" name="fontSize" value="24" min="16" max="32"></p>
+      <p>弹幕位置：<input type="radio" id="rangeFull" name="range" checked="" value="0,1"><label class="ui-radio"
+                                                                                            for="rangeFull"></label><label
+        for="rangeFull">全部位置</label>
+        <input type="radio" id="rangeTop" name="range" value="0,0.3"><label class="ui-radio"
+                                                                            for="rangeTop"></label><label
+          for="rangeTop">顶部</label>
+        <input type="radio" id="rangeBottom" name="range" value="0.7,1"><label class="ui-radio"
+                                                                               for="rangeBottom"></label><label
+          for="rangeBottom">底部</label>
+      </p>
+      <p class="last"><input class="ui-input" id="input" name="value" required=""><input type="submit"
+                                                                                         class="ui-button ui-button-primary"
+                                                                                         value="发送弹幕"
+                                                                                         disabled="disabled">
+        颜色：<label for="color" class="ui-color-track"><span class="ui-color-thumb"
+                                                           style="background-color: rgb(255, 0, 0);"></span></label><input
+          type="color" id="color" name="color" value="#ff0000" readonly="" data-target="id_6877310766714007"
+          aria-expanded="false"></p>
+    </form>-->
+  </div>
+  <form id="barrageForm" action="barrage.php" method="post" autocomplete="off">
+    透明度(0-100)：
+    <input type="range" class="range" name="opacity" value="100" min="0" max="100">
+    文字大小(16-32)：
+    <input type="range" class="range" name="fontSize" value="24" min="16" max="32"></p>
+    弹幕位置：<input type="radio" id="rangeFull" name="range" checked="" value="0,1">
+    <label class="ui-radio" for="rangeFull"></label>
+    <label for="rangeFull">全部位置</label>
+    <input type="radio" id="rangeTop" name="range" value="0,0.3">
+    <label class="ui-radio" or="rangeTop"></label>
+    <label for="rangeTop">顶部</label>
+    <input type="radio" id="rangeBottom" name="range" value="0.7,1">
+    <label class="ui-radio" for="rangeBottom"></label>
+    <label for="rangeBottom">底部</label>
+    <p>
+      <input class="ui-input" id="input" name="value" required="">
+      <input type="submit" value="发送弹幕" disabled="disabled">
+      颜色：
+      <input type="color" id="color" name="color" value="#ff0000" readonly="">
+    </p>
+  </form>
+</div>
+</body>
+</html>
