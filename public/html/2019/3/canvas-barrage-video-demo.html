@@ -3,7 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>弹幕实例</title>
+  <script src="/js/canvasBarrage.js"></script>
+  <script src="/lib/jquery/jquery-1.12.4.min.js"></script>
   <style>
+    .video-x1 {
+      position: relative;
+      width: 640px;
+      margin: auto;
+    }
+    #canvasBarrage1 {
+      position: absolute;
+      width: 640px;
+      height: 200px;
+    }
+    .video-placeholder {
+      height: 200px;
+      background-color: #000;
+      animation: bgColor 10s infinite alternate;
+    }
+    @keyframes bgColor {
+      25% {
+        background-color: darkred;
+      }
+      50% {
+        background-color: darkgreen;
+      }
+      75% {
+        background-color: darkblue;
+      }
+      100% {
+        background-color: sliver;
+      }
+    }
+    /*===============================================*/
     .video-x {
       position: relative;
       width: 640px;
@@ -25,7 +57,6 @@
       pointer-events: none;
       z-index: 1;
     }
-
     input[type="range"] {
       vertical-align: middle;
       margin-right: 50px;
@@ -51,46 +82,15 @@
 </head>
 <body>
 <div class="demo">
+  <div class="video-x1">
+    <canvas id="canvasBarrage1"></canvas>
+    <div class="video-placeholder"></div>
+  </div>
+</div>
+<div class="demo">
   <div class="video-x">
     <canvas id="canvasBarrage" class="canvas-barrage"></canvas>
     <video id="videoBarrage" src="/videos/fish.mp4" controls=""></video>
-    <!--<form id="barrageForm" action="barrage.php" method="post" autocomplete="off">-->
-
-    <!--<form id="barrageForm" action="barrage.php" method="post" autocomplete="off">
-      <p>透明度(0-100)：
-      <div class="range ui-range" style="width: 129px;">
-        <div class="ui-range-track" style="border-left-width: 129px;"><a class="ui-range-thumb" href="javascript:"
-                                                                         aria-valuenow="100" aria-valuemax="100"
-                                                                         aria-valuemin="0" role="slider"
-                                                                         draggable="false"></a></div>
-      </div>
-      <input type="range" class="range" name="opacity" value="100" min="0" max="100"> 文字大小(16-32)：
-      <div class="range ui-range" style="width: 129px;">
-        <div class="ui-range-track" style="border-left-width: 64.5px;"><a class="ui-range-thumb" href="javascript:"
-                                                                          aria-valuenow="24" aria-valuemax="32"
-                                                                          aria-valuemin="16" role="slider"
-                                                                          draggable="false"></a></div>
-      </div>
-      <input type="range" class="range" name="fontSize" value="24" min="16" max="32"></p>
-      <p>弹幕位置：<input type="radio" id="rangeFull" name="range" checked="" value="0,1"><label class="ui-radio"
-                                                                                            for="rangeFull"></label><label
-        for="rangeFull">全部位置</label>
-        <input type="radio" id="rangeTop" name="range" value="0,0.3"><label class="ui-radio"
-                                                                            for="rangeTop"></label><label
-          for="rangeTop">顶部</label>
-        <input type="radio" id="rangeBottom" name="range" value="0.7,1"><label class="ui-radio"
-                                                                               for="rangeBottom"></label><label
-          for="rangeBottom">底部</label>
-      </p>
-      <p class="last"><input class="ui-input" id="input" name="value" required=""><input type="submit"
-                                                                                         class="ui-button ui-button-primary"
-                                                                                         value="发送弹幕"
-                                                                                         disabled="disabled">
-        颜色：<label for="color" class="ui-color-track"><span class="ui-color-thumb"
-                                                           style="background-color: rgb(255, 0, 0);"></span></label><input
-          type="color" id="color" name="color" value="#ff0000" readonly="" data-target="id_6877310766714007"
-          aria-expanded="false"></p>
-    </form>-->
   </div>
   <form id="barrageForm" action="barrage.php" method="post" autocomplete="off">
     透明度(0-100)：
@@ -114,5 +114,271 @@
     </p>
   </form>
 </div>
+<script>
+  // 弹幕数据
+  var dataBarrage1 = [{
+    value: '使用的是静态死数据',
+    color: 'blue',
+    range: [0, 0.5]
+  }, {
+    value: '随机循环播放',
+    color: 'blue',
+    range: [0, 0.6]
+  }, {
+    value: '可以控制区域和垂直分布范围',
+    color: 'blue',
+    range: [0, 0.5]
+  }, {
+    value: '字体大小和速度在方法内设置',
+    color: 'black',
+    range: [0.1, 1]
+  }, {
+    value: '适合用在一些静态页面上',
+    color: 'black',
+    range: [0.2, 1]
+  }, {
+    value: '基于canvas实现',
+    color: 'black',
+    range: [0.2, 0.9]
+  }, {
+    value: '因此IE9+浏览器才支持',
+    color: 'black',
+    range: [0.2, 1]
+  }, {
+    value: '可以设置边框颜色',
+    color: 'black',
+    range: [0.2, 1]
+  }, {
+    value: '文字颜色默认都是白色',
+    color: 'black',
+    range: [0.2, 0.9]
+  }, {
+    value: '若文字颜色不想白色',
+    color: 'black',
+    range: [0.2, 1]
+  }, {
+    value: '需要自己调整下JS',
+    color: 'black',
+    range: [0.6, 0.7]
+  }, {
+    value: '如果需要的是真实和视频交互的弹幕',
+    color: 'black',
+    range: [0.2, 1]
+  }, {
+    value: '可以回到原文',
+    color: 'black',
+    range: [0, 0.9]
+  }, {
+    value: '查看另外一个demo',
+    color: 'black',
+    range: [0.7, 1]
+  }, {
+    value: '下面就是占位弹幕了',
+    color: 'black',
+    range: [0.7, 0.95]
+  }, {
+    value: '前方高能预警！！！',
+    color: 'orange',
+    range: [0.5, 0.8]
+  }, {
+    value: '前方高能预警！！！',
+    color: 'orange',
+    range: [0.5, 0.9]
+  }, {
+    value: '前方高能预警！！！',
+    color: 'orange',
+    range: [0, 1]
+  }, {
+    value: '前方高能预警！！！',
+    color: 'orange',
+    range: [0, 1]
+  }];
+
+  // 弹幕方法
+  var canvasBarrageBak = function (canvas, data) {
+    if (!canvas || !data || !data.length) {
+      return;
+    }
+    if (typeof canvas == 'string') {
+      canvas = document.querySelector(canvas);
+      canvasBarrageBak(canvas, data);
+      return;
+    }
+    var context = canvas.getContext('2d');
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+    // 存储实例
+    var store = {};
+
+    // 字号大小
+    var fontSize = 28;
+
+    // 实例方法
+    var Barrage = function (obj, index) {
+      // 随机x坐标也就是横坐标，对于y纵坐标，以及变化量moveX
+      this.x = (1 + index * 0.1 / Math.random()) * canvas.width;
+      this.y = obj.range[0] * canvas.height + (obj.range[1] - obj.range[0]) * canvas.height * Math.random() + 36;
+      if (this.y < fontSize) {
+        this.y = fontSize;
+      } else if (this.y > canvas.height - fontSize) {
+        this.y = canvas.height - fontSize;
+      }
+      this.moveX = 1 + Math.random() * 3;
+
+      this.opacity = 0.8 + 0.2 * Math.random();
+      this.params = obj;
+
+      this.draw = function () {
+        var params = this.params;
+        // 根据此时x位置绘制文本
+        context.strokeStyle = params.color;
+        context.font = 'bold ' + fontSize + 'px "microsoft yahei", sans-serif';
+        context.fillStyle = 'rgba(255,255,255,'+ this.opacity +')';
+        context.fillText(params.value, this.x, this.y);
+        context.strokeText(params.value, this.x, this.y);
+      };
+    };
+
+    data.forEach(function (obj, index) {
+      store[index] = new Barrage(obj, index);
+    });
+
+    // 绘制弹幕文本
+    var draw = function () {
+      for (var index in store) {
+        var barrage = store[index];
+        // 位置变化
+        barrage.x -= barrage.moveX;
+        if (barrage.x < -1 * canvas.width * 1.5) {
+          // 移动到画布外部时候从左侧开始继续位移
+          barrage.x = (1 + index * 0.1 / Math.random()) * canvas.width;
+          barrage.y = (barrage.params.range[0] + (barrage.params.range[1] - barrage.params.range[0]) * Math.random()) * canvas.height;
+          if (barrage.y < fontSize) {
+            barrage.y = fontSize;
+          } else if (barrage.y > canvas.height - fontSize) {
+            barrage.y = canvas.height - fontSize;
+          }
+          barrage.moveX = 1 + Math.random() * 3;
+        }
+        // 根据新位置绘制圆圈圈
+        store[index].draw();
+      }
+    };
+
+    // 画布渲染
+    var render = function () {
+      // 清除画布
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 绘制画布上所有的圆圈圈
+      draw();
+
+      // 继续渲染
+      requestAnimationFrame(render);
+    };
+
+    render();
+  };
+
+  canvasBarrageBak('#canvasBarrage1', dataBarrage1);
+</script>
+<script type="text/javascript">
+  // 弹幕数据
+  var dataBarrage = [{
+    value: 'speed设为0为非滚动',
+    time: 1, // 单位秒
+    speed: 0
+  }, {
+    value: 'time控制弹幕时间，单位秒',
+    color: 'blue',
+    time: 2
+  }, {
+    value: '视频共21秒',
+    time: 3.2
+  }, {
+    value: '视频背景为白色',
+    time: 4.5
+  }, {
+    value: '视频为录制',
+    time: 5.0
+  }, {
+    value: '视频内容简单',
+    time: 6.3
+  }, {
+    value: '是为了让视频尺寸不至于过大',
+    time: 7.8
+  }, {
+    value: '省流量',
+    time: 1.5
+  }, {
+    value: '支持弹幕暂停（视频暂停）',
+    time: 2.5
+  }, {
+    value: 'add()方法新增弹幕',
+    time: 5.5
+  }, {
+    value: 'reset()方法重置弹幕',
+    time: 3.8
+  }, {
+    value: '颜色，字号，透明度可全局设置',
+    time: 6.4
+  }, {
+    value: '具体交互细节可参考页面源代码',
+    time: 2.4
+  }, {
+    value: '内容不错哦！',
+    time: 6.0,
+    color: 'yellow'
+  }];
+
+  // 初始化弹幕方法
+  var eleCanvas = document.getElementById('canvasBarrage');
+  var eleVideo = document.getElementById('videoBarrage');
+
+  var demoBarrage = new CanvasBarrage(eleCanvas, eleVideo, {
+    data: dataBarrage
+  });
+
+  // 下面是交互处理，与弹幕方法本身无关，旨在演示如何修改全局设置，新增弹幕等
+  // 1. 全局的弹幕大小，位置和透明度处理
+  document.addEventListener("DOMContentLoaded", function() {
+    $('.range').on('change', function () {
+      // 改变弹幕的透明度和字号大小
+      demoBarrage[this.name] = this.value * 1;
+    });
+
+    $('input[name="range"]').on('click', function () {
+      // 改变弹幕在视频显示的区域范围
+      demoBarrage['range'] = this.value.split(',');
+    });
+
+    // 发送弹幕
+    var elForm = $('#barrageForm'), elInput = $('#input');
+    elForm.on('submit', function (event) {
+      event.preventDefault();
+      // 新增弹幕
+      demoBarrage.add({
+        value: $('#input').val(),
+        color: $('#color').val(),
+        time: eleVideo.currentTime
+      });
+
+      elInput.val('').trigger('input');
+    });
+    // 提交按钮
+    var elSubmit = elForm.find('input[type="submit"]');
+
+    // 输入框和禁用按钮
+    elInput.on('input', function () {
+      if (this.value.trim()) {
+        elSubmit.removeAttr('disabled');
+      } else {
+        elSubmit.attr('disabled', 'disabled');
+      }
+    });
+
+  }, false);
+</script>
 </body>
 </html>
