@@ -1,83 +1,84 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <title>jQuery-图片的放大镜显示效果</title>
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/quick-layout.css">
-    <script type="text/javascript" src="/lib/jquery/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="/js/jqzoom.js"></script>
-    <style type="text/css">
-        img {
-            max-width: none;
-        }
+  <title>jQuery-图片的放大镜显示效果</title>
+  <script type="text/javascript" src="/lib/jquery/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="/js/jqzoom.js"></script>
+  <style type="text/css">
 
-        .zxx_image_zoom_list {
-            display: inline-block;
-            text-align: center;
-            margin: 0px 20px;
-        }
+    img {
+      max-width: none;
+    }
 
-        .zxx_image_zoom_list img.zxx_zoom_image {
-            padding: 3px;
-            border: 1px solid #cccccc;
-            background: white;
-            vertical-align: middle;
-            position: relative;
-        }
-        .zxx_image_zoom_list:hover, .zxx_image_zoom_list:hover img.zxx_zoom_image {
-            border-color: #ff3300;
-        }
+    .zxx_image_zoom_list {
+      display: inline-block;
+      width: 1.2em;
+      height: 1.1em;
+      text-align: center;
+      font-size: 128px;
+    }
 
-        .zxx_image_zoom_div {
-            padding: 3px;
-            background: white;
-            border: 1px solid #cccccc;
-            text-align: center;
-            position: absolute;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            overflow: hidden;
-        }
-    </style>
-    <script type="text/javascript">
-        jQuery.noConflict();
-        jQuery(document).ready(function () {
-            jQuery("img.zxx_zoom_image").jqueryzoom({
-                xzoom: 100,		//zoomed width default width
-                yzoom: 100,		//zoomed div default width
-            });
-        });
-    </script>
+    .zxx_image_zoom_list img.zxx_zoom_image {
+      padding: 3px;
+      border: 1px solid #cccccc;
+      background: white;
+      vertical-align: middle;
+      position: relative;
+    }
+
+    .zxx_image_zoom_list:hover, .zxx_image_zoom_list:hover img.zxx_zoom_image {
+      border-color: #ff3300;
+    }
+
+    .zxx_image_zoom_div {
+      width: 200px;
+      height: 200px;
+      padding: 3px;
+      background: white;
+      border: 1px solid #cccccc;
+      text-align: center;
+      position: absolute;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+    }
+
+  </style>
+  <script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function () {
+      jQuery("img.zxx_zoom_image").jqueryzoom();
+    });
+  </script>
 </head>
 
 <body>
 <div class="zxx_out_box">
-    <div class="zxx_in_box">
-        <h3 class="zxx_title">jQuery-图片的放大镜显示效果</h3>
-        <div class="zxx_main_con">
-            <a href="/images/big/mm1.jpg" class="zxx_image_zoom_list">
-                <img class="zxx_zoom_image" src="/images/small/mm1.jpg"/>
-            </a>
-            <a href="/images/big/mm2.jpg" class="zxx_image_zoom_list">
-                <img class="zxx_zoom_image" src="/images/small/mm2.jpg"/>
-            </a>
-            <a href="/images/big/mm3.jpg" class="zxx_image_zoom_list">
-                <img class="zxx_zoom_image" src="/images/small/mm3.jpg"/>
-            </a>
-            <a href="/images/big/mm4.jpg" class="zxx_image_zoom_list">
-                <img class="zxx_zoom_image" src="/images/small/mm4.jpg"/>
-            </a>
-            <a href="/images/big/mm5.jpg" class="zxx_image_zoom_list">
-                <img class="zxx_zoom_image" src="/images/small/mm5.jpg"/>
-            </a>
-            <a href="/images/big/mm6.jpg" class="zxx_image_zoom_list">
-                <img class="zxx_zoom_image" src="/images/small/mm6.jpg"/>
-            </a>
-        </div>
-
+  <div class="zxx_in_box">
+    <h3 class="zxx_title">jQuery-图片的放大镜显示效果</h3>
+    <div class="zxx_main_con">
+      <a href="/images/big/mm11.jpg" class="zxx_image_zoom_list">
+        <img class="zxx_zoom_image" src="/images/small/mm1.jpg"/>
+      </a>
+      <a href="/images/big/mm2.jpg" class="zxx_image_zoom_list">
+        <img class="zxx_zoom_image" src="/images/small/mm2.jpg"/>
+      </a>
+      <a href="/images/big/mm3.jpg" class="zxx_image_zoom_list">
+        <img class="zxx_zoom_image" src="/images/small/mm3.jpg"/>
+      </a>
+      <a href="/images/big/mm4.jpg" class="zxx_image_zoom_list">
+        <img class="zxx_zoom_image" src="/images/small/mm4.jpg"/>
+      </a>
+      <a href="/images/big/mm5.jpg" class="zxx_image_zoom_list">
+        <img class="zxx_zoom_image" src="/images/small/mm5.jpg"/>
+      </a>
+      <a href="/images/big/mm6.jpg" class="zxx_image_zoom_list">
+        <img class="zxx_zoom_image" src="/images/small/mm6.jpg"/>
+      </a>
     </div>
+
+  </div>
 </div>
 </body>
 </html>
