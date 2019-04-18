@@ -2,31 +2,56 @@
 <html lang="zh-cn">
 <head>
   <meta charset="UTF-8">
-  <title>图片裁剪</title>
+  <title>纯js图片裁剪</title>
 </head>
 <body>
 <p>
   <button id="cropBeginBtn">图片处理</button>
 </p>
 <img id="cropTestImg" src="/images/big/mm1.jpg"/>
-<p><button id="cropEndBtn" style="display:none; position:relative; z-index:1;">确认处理</button></p>
+<p>
+  <button id="cropEndBtn" style="display:none; position:relative; z-index:1;">确认处理</button>
+</p>
 <script type="text/javascript" src="/js/zxx.crop_rotation.js"></script>
 <script type="text/javascript">
-  window.onload = function(){
+  window.onload = function () {
     var oImg = document.getElementById("cropTestImg");
     var oEndBtn = document.getElementById("cropEndBtn");
-    document.getElementById("cropBeginBtn").onclick = function(){
+    document.getElementById("cropBeginBtn").onclick = function () {
       fnImageCropRot(oImg);
       oEndBtn.style.display = "inline-block";
     };
-    oEndBtn.onclick = function(){
-      var x = document.getElementById("cropPosX").value, y = document.getElementById("cropPosY").value, w = document.getElementById("cropImageWidth").value, h = document.getElementById("cropImageHeight").value, angle = document.getElementById("zxxRotAngle").value;
-      if(angle === ""){
+    oEndBtn.onclick = function () {
+      var x = document.getElementById("cropPosX").value, y = document.getElementById("cropPosY").value,
+        w = document.getElementById("cropImageWidth").value, h = document.getElementById("cropImageHeight").value,
+        angle = document.getElementById("zxxRotAngle").value;
+      if (angle === "") {
         angle = 0;
       }
-      alert("角度："+angle+"\n剪裁横坐标："+x+"\n剪裁纵坐标："+y+"\n剪裁宽度："+w+"\n剪裁高度："+h);
+      alert("角度：" + angle + "\n剪裁横坐标：" + x + "\n剪裁纵坐标：" + y + "\n剪裁宽度：" + w + "\n剪裁高度：" + h);
     };
   };
 </script>
+<!--js文件添加的结构，方便查看
+<div style="font-size:12px; position:absolute; top:-24px; right:0;">
+  旋转：<input id="zxxRotAngle" type="text" value="0" style="width:38px; height:15px; border:1px solid #a0b3d6; font-size:100%; padding:2px 0 1px 2px; margin-right:3px; color:#333333;" />度
+</div>
+<canvas id="zxxImageCanvas" style="position:absolute;"></canvas>
+<div id="zxxCropBox" style="height:' + cropH + 'px; width:' + cropW + 'px; position:absolute; left:' + posX + 'px; top:' + posY + 'px; border:1px solid black;">
+  <div id="zxxDragBg" style="height:100%; background:white; opacity:0.3; filter:alpha(opacity=30); cursor:move;"></div>
+  <div id="dragLeftTop" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; left:-3px; top:-3px; cursor:nw-resize;"></div>
+  <div id="dragLeftBot" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; left:-3px; bottom:-3px; cursor:sw-resize;"></div>
+  <div id="dragRightTop" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; right:-3px; top:-3px; cursor:ne-resize;"></div>
+  <div id="dragRightBot" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; right:-3px; bottom:-3px; cursor:se-resize;"></div>
+  <div id="dragTopCenter" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; top:-3px; left:50%; margin-left:-3px; cursor:n-resize;"></div>
+  <div id="dragBotCenter" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; bottom:-3px; left:50%; margin-left:-3px; cursor:s-resize;"></div>
+  <div id="dragRightCenter" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; right:-3px; top:50%; margin-top:-3px; cursor:e-resize;"></div>
+  <div id="dragLeftCenter" style="position:absolute; width:4px; height:4px; border:1px solid #000; background:white; overflow:hidden; left:-3px; top:50%; margin-top:-3px; cursor:w-resize;"></div>
+</div>
+<input type="hidden" id="cropPosX" value="' + posX / scaleX + '" />
+<input type="hidden" id="cropPosY" value="' + posY / scaleY + '" />
+<input type="hidden" id="cropImageWidth" value="' + cropW / scaleX + '" />
+<input type="hidden" id="cropImageHeight" value="' + cropH / scaleY + '" />-->
 </body>
 </html>
+<!--https://www.zhangxinxu.com/wordpress/2010/05/%E5%9B%BE%E7%89%87%E6%97%8B%E8%BD%AC%E5%89%AA%E8%A3%81js%E6%8F%92%E4%BB%B6%E5%85%BC%E5%AE%B9%E5%90%84%E6%B5%8F%E8%A7%88%E5%99%A8/-->
