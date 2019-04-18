@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>电商图片放大实例</title>
-  <link rel="stylesheet" href="/css/normalize.css">
   <script src="/lib/jquery/jquery-1.12.4.min.js"></script>
   <style>
-    ul{
+    ul {
       padding: 0;
     }
+
     li {
       list-style: none;
     }
@@ -79,11 +79,12 @@
       width: 400px;
       height: 400px;
       position: absolute;
+      border:1px solid #000;
       top: 0;
       right: -410px;
       background: #ffffcc;
       display: none;
-      background-image: url('../img/1.jpg');
+      background: url('../img/1.jpg') no-repeat;
     }
 
   </style>
@@ -92,18 +93,20 @@
 <div id="wrap">
   <div class="pic">
     <div class="pic_cover">
-      <img src="../img/1.jpg" width=400 height=400 />
+      <img src="../img/1.jpg" width=400 height=400/>
+      <!--选区-->
       <div class="cover"></div>
+      <!--放大-->
       <div class="show"></div>
     </div>
   </div>
   <div class="tab">
     <ul>
-      <li class="on"><img src="../img/1.jpg" /></li>
-      <li><img src="../img/2.jpg" /></li>
-      <li><img src="../img/3.jpg" /></li>
-      <li><img src="../img/4.jpg" /></li>
-      <li><img src="../img/5.jpg" /></li>
+      <li class="on"><img src="../img/1.jpg"/></li>
+      <li><img src="../img/2.jpg"/></li>
+      <li><img src="../img/3.jpg"/></li>
+      <li><img src="../img/4.jpg"/></li>
+      <li><img src="../img/5.jpg"/></li>
     </ul>
   </div>
 </div>
@@ -117,35 +120,35 @@
   var $show = $('.show');
   var imgArr = [];
   var index = 0;
-  setTimeout(init,1000)
-  $tabLi.hover(function(){
+  setTimeout(init, 1000)
+  $tabLi.hover(function () {
     index = $(this).index();
     //改变class名以改变边框
     $(this).addClass('on').siblings().removeClass('on');
     //获取小图src
     var src = $(this).find('img').prop('src');
-    //改变大图src
-    $show.css('backgroundImage' , 'url('+src+')');
-    //设置图片宽高
+    //改变放大图src
+    $show.css('backgroundImage', 'url(' + src + ')');
+    //设置显示图片宽高和src
     $picImg.prop({
-      src : src,
-      width : imgArr[index].width * 400,
-      height : imgArr[index].height * 400
+      src: src,
+      width: imgArr[index].width * 400,
+      height: imgArr[index].height * 400
     });
     //设置图片相对位置
     $picCover.css({
-      top : (400 - imgArr[index].height * 400 ) / 2,
-      left : (400 - imgArr[index].width * 400 ) / 2
+      top: (400 - imgArr[index].height * 400) / 2,
+      left: (400 - imgArr[index].width * 400) / 2
     });
-    var a = 400*$picCover.width() / imgArr[index].imgW + 'px'
     //设置放大镜的宽高
+    var a = 400*$picCover.width() / imgArr[index].imgW + 'px'
     $cover.css({
       width : a,
       height : a
     });
   });
 
-  $picCover.mousemove(function(ev){
+  $picCover.mousemove(function (ev) {
     $cover.show();
     $show.show();
     var pX = ev.pageX,
@@ -153,28 +156,38 @@
 
     var picCoverX = $picCover.offset().left,
       picCoverY = $picCover.offset().top;
-    var minusX = pX - picCoverX - $cover.width()/2,
-      minusY = pY - picCoverY - $cover.height()/2;
+    var minusX = pX - picCoverX - $cover.width() / 2,
+      minusY = pY - picCoverY - $cover.height() / 2;
 
-    minusX = Math.max( minusX , 0 );
-    minusX = Math.min( minusX , $picCover.width() - $cover.width() );
-    minusY = Math.max( minusY , 0 );
-    minusY = Math.min( minusY , $picCover.height() - $cover.height() );
+    minusX = Math.max(minusX, 0);
+    minusX = Math.min(minusX, $picCover.width() - $cover.width());
+    minusY = Math.max(minusY, 0);
+    minusY = Math.min(minusY, $picCover.height() - $cover.height());
     //定位放大镜
     $cover.css({
-      left : minusX + 'px',
-      top : minusY + 'px'
+      left: minusX + 'px',
+      top: minusY + 'px'
     });
+    /*console.log(minusX)
+    console.log(minusY)*/
     //改变原始大图的背景位置
-    $show.css('backgroundPosition' ,(-(minusX/$picCover.width())*imgArr[index].imgW) +'px '+ (-(minusY/$picCover.height())*imgArr[index].imgH) +'px');
-  }).mouseleave(function(){
+    var x = minusX * $show.width()/ $cover.width()
+    var xMax = imgArr[index].imgW - $show.width()
+    var y = minusY * $show.height()/ $cover.height()
+    var yMax = imgArr[index].imgH - $show.height()
+    console.log(minusY)
+    $show.css('backgroundPosition', (-Math.min(x, xMax) + 'px ' + -Math.min(y, yMax) + 'px'))
+  }).mouseleave(function () {
     $cover.hide();
     $show.hide();
   });
+
   function init() {
     $tabLiImg.each(function (i) {
+      //先缓存图片实际宽度
       var imgWidth = $(this).width();
       var imgHeight = $(this).height();
+      // 取最长边缩放
       if (imgWidth >= imgHeight) {
         $(this).prop({
           width: 50,
@@ -184,7 +197,7 @@
           top: (50 - 50 / imgWidth * imgHeight) / 2 + 'px'
         });
         imgArr[i] = {width: 1, height: imgHeight / imgWidth, imgW: imgWidth, imgH: imgHeight};
-      }else {
+      } else {
         $(this).prop({
           width: 50 / imgHeight * imgWidth,
           height: 50
@@ -195,6 +208,24 @@
         imgArr[i] = {width: imgWidth / imgHeight, height: 1, imgW: imgWidth, imgH: imgHeight};
       }
       $(this).show();
+    });
+    //初始化你完成后处理第一张图片
+    //设置显示图片宽高和src
+    $picImg.prop({
+      src: src,
+      width: imgArr[0].width * 400,
+      height: imgArr[0].height * 400
+    });
+    //设置图片相对位置
+    $picCover.css({
+      top: (400 - imgArr[0].height * 400) / 2,
+      left: (400 - imgArr[0].width * 400) / 2
+    });
+    var a = 400 * $picCover.width() / imgArr[0].imgW + 'px'
+    //设置放大镜的宽高
+    $cover.css({
+      width: a,
+      height: a
     });
   };
 </script>
