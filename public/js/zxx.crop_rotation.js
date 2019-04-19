@@ -51,7 +51,7 @@ var fnImageCropRot = function (o) {
       }
       oRelDiv.insertBefore(o, oCanvas)
       //---------------------------图片包裹装载完毕-----------------------
-      //canvas旋转角度的方法
+      //canvas旋转角度的方法,如果不需要，这部分可去掉
       var fnCanvasRotate = function (canvas, img, rot) {
         //获取图片的高宽
         var w = iCurWidth
@@ -105,8 +105,8 @@ var fnImageCropRot = function (o) {
         height: 0,
         currentX: 0,
         currentY: 0,
-        flag: false,
-        kind: "drag"
+        flag: false, //标记是否正在拖动
+        kind: "drag"//操作类型，是拖动还是各个方向的拉伸
       }
       //获取相关CSS属性方法
       var getCss = function (o, key) {
@@ -129,6 +129,7 @@ var fnImageCropRot = function (o) {
         point.onmousedown = function (event) {
           params.kind = kind
           params.flag = true
+          // 兼容处理
           if (!event) {
             event = window.event
           }
@@ -184,11 +185,15 @@ var fnImageCropRot = function (o) {
           if (params.flag) {
             var nowX = e.clientX, nowY = e.clientY
             var disX = nowX - params.currentX, disY = nowY - params.currentY
+
             if (params.kind === "n") {
+
               //上拉伸
               //高度增加或减小，位置上下移动
+              var max = params.top.replace('px', '')
+              disY = Math.abs(disY) > max? max: disY
               target.style.top = parseInt(params.top) + disY + "px"
-              target.style.height = parseInt(params.height) - disY + "px"
+              // target.style.height = parseInt(params.height) - disY + "px"
             } else if (params.kind === "w") {//左拉伸
               target.style.left = parseInt(params.left) + disX + "px"
               target.style.width = parseInt(params.width) - disX + "px"
@@ -214,7 +219,8 @@ var fnImageCropRot = function (o) {
             } else if (params.kind === "se") {//右下拉伸
               target.style.width = parseInt(params.width) + disX + "px"
               target.style.height = parseInt(params.height) + disY + "px"
-            } else {//移动
+            } else {
+              //移动
               target.style.left = parseInt(params.left) + disX + "px"
               target.style.top = parseInt(params.top) + disY + "px"
             }
