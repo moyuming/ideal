@@ -185,44 +185,132 @@ var fnImageCropRot = function (o) {
           if (params.flag) {
             var nowX = e.clientX, nowY = e.clientY
             var disX = nowX - params.currentX, disY = nowY - params.currentY
-
+            var top, left, width, height
             if (params.kind === "n") {
-
               //上拉伸
               //高度增加或减小，位置上下移动
-              var max = params.top.replace('px', '')
-              disY = Math.abs(disY) > max? max: disY
-              target.style.top = parseInt(params.top) + disY + "px"
-              // target.style.height = parseInt(params.height) - disY + "px"
-            } else if (params.kind === "w") {//左拉伸
-              target.style.left = parseInt(params.left) + disX + "px"
-              target.style.width = parseInt(params.width) - disX + "px"
-            } else if (params.kind === "e") {//右拉伸
-              target.style.width = parseInt(params.width) + disX + "px"
-            } else if (params.kind === "s") {//下拉伸
-              target.style.height = parseInt(params.height) + disY + "px"
-            } else if (params.kind === "nw") {//左上拉伸
-              target.style.left = parseInt(params.left) + disX + "px"
-              target.style.width = parseInt(params.width) - disX + "px"
-              target.style.top = parseInt(params.top) + disY + "px"
-              target.style.height = parseInt(params.height) - disY + "px"
-            } else if (params.kind === "ne") {//右上拉伸
-              target.style.top = parseInt(params.top) + disY + "px"
-              target.style.height = parseInt(params.height) - disY + "px"
+              top  = parseInt(params.top) + disY
+              height = parseInt(params.height) - disY
+              if(top < 0){
+                top = 0
+                height = parseInt(params.height) + parseInt(params.top)
+              }
+              target.style.top = top + "px"
+              target.style.height = height + "px"
+            } else if (params.kind === "w") {
+              //左拉伸
+              left = parseInt(params.left) + disX
+              width = parseInt(params.width) - disX
+              if(left < 0){
+                left = 0
+                width = parseInt(params.width) + parseInt(params.left)
+              }
+              target.style.left = left + "px"
+              target.style.width = width + "px"
+            } else if (params.kind === "e") {
+              //右拉伸
+              left = parseInt(params.left)
+              width = parseInt(params.width) + disX
+              //2是因为左右存在1px的边框
+              if((left+width+2)>iCurWidth){
+                width = iCurWidth - left -2
+              }
+              target.style.width = width + "px"
+            } else if (params.kind === "s") {
+              //下拉伸
+              top = parseInt(params.top)
+              height = parseInt(params.height) + disY
+              //2是因为左右存在1px的边框
+              if((top+height+2)>iCurHeight){
+                height= iCurHeight - top -2
+              }
+              target.style.height = height + "px"
+            } else if (params.kind === "nw") {
+              //左上拉伸
+              top  = parseInt(params.top) + disY
+              height = parseInt(params.height) - disY
+              if(top < 0){
+                top = 0
+                height = parseInt(params.height) + parseInt(params.top)
+              }
+              left = parseInt(params.left) + disX
+              width = parseInt(params.width) - disX
+              if(left < 0){
+                left = 0
+                width = parseInt(params.width) + parseInt(params.left)
+              }
+              target.style.left = left + "px"
+              target.style.width = width + "px"
+              target.style.top = top + "px"
+              target.style.height = height + "px"
+            } else if (params.kind === "ne") {
+              //右上拉伸
+              top  = parseInt(params.top) + disY
+              height = parseInt(params.height) - disY
+              if(top < 0){
+                top = 0
+                height = parseInt(params.height) + parseInt(params.top)
+              }
+              left = parseInt(params.left)
+              width = parseInt(params.width) + disX
+              //2是因为左右存在1px的边框
+              if((left+width+2)>iCurWidth){
+                width = iCurWidth - left -2
+              }
+              target.style.top = top + "px"
+              target.style.height = height + "px"
               //右
-              target.style.width = parseInt(params.width) + disX + "px"
+              target.style.width = width + "px"
             } else if (params.kind === "sw") {//左下拉伸
-              target.style.left = parseInt(params.left) + disX + "px"
-              target.style.width = parseInt(params.width) - disX + "px"
+              left = parseInt(params.left) + disX
+              width = parseInt(params.width) - disX
+              if(left < 0){
+                left = 0
+                width = parseInt(params.width) + parseInt(params.left)
+              }
+              top = parseInt(params.top)
+              height = parseInt(params.height) + disY
+              //2是因为左右存在1px的边框
+              if((top+height+2)>iCurHeight){
+                height= iCurHeight - top -2
+              }
+              target.style.left = left + "px"
+              target.style.width = width + "px"
               //下
-              target.style.height = parseInt(params.height) + disY + "px"
+              target.style.height = height + "px"
             } else if (params.kind === "se") {//右下拉伸
-              target.style.width = parseInt(params.width) + disX + "px"
-              target.style.height = parseInt(params.height) + disY + "px"
+              left = parseInt(params.left)
+              width = parseInt(params.width) + disX
+              //2是因为左右存在1px的边框
+              if((left+width+2)>iCurWidth){
+                width = iCurWidth - left -2
+              }
+              top = parseInt(params.top)
+              height = parseInt(params.height) + disY
+              //2是因为左右存在1px的边框
+              if((top+height+2)>iCurHeight){
+                height= iCurHeight - top -2
+              }
+              target.style.width = width + "px"
+              target.style.height = height + "px"
             } else {
               //移动
-              target.style.left = parseInt(params.left) + disX + "px"
-              target.style.top = parseInt(params.top) + disY + "px"
+              left = parseInt(params.left) + disX
+              top = parseInt(params.top) + disY
+              width = parseInt(params.width)
+              height = parseInt(params.height)
+              if(left<0){
+                left = 0
+              }else if(left>(iCurWidth-width-2)){
+                left = iCurWidth-width-2
+              }
+              if(top<0){
+                top = 0
+              }else if(top>(iCurHeight-height-2)){
+                top = iCurHeight-height-2
+              }
+              target.style.left = left + "px"
+              target.style.top = top + "px"
             }
           }
         }
