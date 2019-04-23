@@ -1,9 +1,9 @@
-var gulp = require('gulp');
+var gulp = require('gulp')
 // 调用 .create() 意味着你得到一个唯一的实例并允许您创建多个服务器或代理。
-var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync').create()
 // 这里reload不加括号，只引用不调用
 // var reload = browserSync.reload;
-var nodemon = require('gulp-nodemon');
+var nodemon = require('gulp-nodemon')
 gulp.task('server', function() {
     nodemon({
         script: 'app.js',
@@ -15,7 +15,7 @@ gulp.task('server', function() {
     }).on('start', function() {
         browserSync.init({
             proxy: 'http://localhost:3000',
-            files: ["public/**/*.*","index.html"],
+            files: ["public/**/*.*", "index.html"],
             // 在不同浏览器上镜像点击、滚动和表单，即所有浏览器都会同步
             ghostMode: {
                 clicks: true,
@@ -25,8 +25,8 @@ gulp.task('server', function() {
             open: false,
             port:8080
         }, function() {
-            console.log("browser refreshed.");
-        });
-    });
-});
+            console.log("browser refreshed.")
+        })
+    })
+})
 gulp.task('default', ['server'])
