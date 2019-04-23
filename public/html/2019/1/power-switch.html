@@ -8,8 +8,8 @@
   <script type="text/javascript" src="/lib/jquery/plugin/jquery-powerSwitch.js"></script>
   <style>
     .index_box {
-      width: 700px;
-      height: 470px;
+      width: 800px;
+      height: 360px;
       border: 1px solid #ccc;
       position: relative;
       margin: 0px auto 0;
@@ -51,7 +51,7 @@
     }
 
     .index_control {
-      width: 700px;
+      width: 800px;
       margin-left: auto;
       margin-right: auto;
       position: relative;
@@ -78,28 +78,16 @@
   <!--  body of index.html -->
   <div class="index_box">
     <div id="indexSlide1" class="index_slide">
-      第一张
+      <img src="../img/one.png" alt="">
     </div>
     <div id="indexSlide2" class="index_slide index_hidden">
-      第二张
+      <img src="../img/two.png" alt="">
     </div>
     <div id="indexSlide3" class="index_slide index_hidden">
-      第三张
+      <img src="../img/three.jpg" alt="">
     </div>
     <div id="indexSlide4" class="index_slide index_hidden">
-      第四张
-    </div>
-    <div id="indexSlide5" class="index_slide index_hidden">
-      第五张
-    </div>
-    <div id="indexSlide6" class="index_slide index_hidden">
-      第六张
-    </div>
-    <div id="indexSlide7" class="index_slide index_hidden">
-      第七张
-    </div>
-    <div id="indexSlide8" class="index_slide index_hidden">
-      第八张
+      <img src="../img/four.jpg" alt="">
     </div>
   </div>
   <div id="indexControl" class="index_control"></div>
@@ -108,10 +96,6 @@
     <a href="javascript:" data-rel="indexSlide2">2</a>
     <a href="javascript:" data-rel="indexSlide3">3</a>
     <a href="javascript:" data-rel="indexSlide4">4</a>
-    <a href="javascript:" data-rel="indexSlide5">5</a>
-    <a href="javascript:" data-rel="indexSlide6">6</a>
-    <a href="javascript:" data-rel="indexSlide7">7</a>
-    <a href="javascript:" data-rel="indexSlide8">8</a>
   </p>
 </div>
 </body>
@@ -124,33 +108,8 @@
     container: $("#indexControl"),//有container才会有上一页和下一页按钮
     autoTime:2000,
     eventType:'hover',
-    onSwitch: function(target) {
-      var eleLazyLoad = target.find("img, iframe").get(0), index = target.data("index");
-      if (eleLazyLoad && !eleLazyLoad.src) {
-        eleLazyLoad.src = eleLazyLoad.getAttribute("data-src");
-      }
-
-      // 第4帧标题的淡入淡出效果
-      if (index == 3) {
-        setTimeout(function () {
-          target.find("p").fadeIn();
-        }, 250);
-      } else {
-        setTimeout(function () {
-          $("#indexSlide4 p").hide();
-        }, 250);
-      }
-      // 第6帧CSS3驱动的动画效果
-      if (index == 5) {
-        setTimeout(function () {
-          target.addClass("active");
-        }, 50);
-      } else {
-        setTimeout(function () {
-          $("#indexSlide6").removeClass("active");
-        }, 250);
-      }
-    }
   });
+
 </script>
+<!--https://www.zhangxinxu.com/wordpress/2013/11/jquery-powerswitch-%e4%b8%87%e8%83%bd%e5%88%87%e6%8d%a2-slide-%e6%8f%92%e4%bb%b6/-->
 </html>

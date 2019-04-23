@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>鼠标方位进入实例</title>
+  <script type="text/javascript" src="/lib/jquery/jquery-1.12.4.min.js"></script>
   <style type='text/css'>
-    * {
+    ul {
       margin: 0;
       padding: 0;
     }
@@ -91,24 +92,22 @@
     </li>
   </ul>
 </div>
-
-<script type="text/javascript" src="/lib/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
   (function () {
 
     var $li = $('#wrap ul li');
 
     $li.hover(function (ev) {
-
+      //进入
       move.call(this, ev, true);
-
     }, function (ev) {
+      //离开
       move.call(this, ev, false);
     });
 
     /**
-     *
-     * @param ev
+     * 作用域对象this为鼠标对应的元素
+     * @param ev 事件对象
      * @param bool  true为进去，false为出来
      */
     function move(ev, bool) {
@@ -119,7 +118,7 @@
       //获取鼠标坐标
       var x = ev.pageX,
         y = ev.pageY;
-      //坐标距离个方位的距离
+      //坐标距离个方位的距离,谁的距离最短就是从哪个方向进入的
       var sT = Math.abs(y - top),
         sB = Math.abs(y - bottom),
         sL = Math.abs(x - left),
@@ -141,7 +140,6 @@
               top: '-360px'
             }, 200);
           }
-
           break;
 
         case sB:
