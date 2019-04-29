@@ -162,6 +162,30 @@ CArray.prototype = {
       }
       step *= 2
     }
-  }
+  },
+  /**
+   * 快速排序法，快速排序是处理大数据集最快的排序算法之一，快速排序算法非常适用于大型数据集合；在处理小数据集时性能反而会下降
+   * 算法首先要在列表中选择一个元素作为基准值（pivot）。数据排序围绕基准值进行，将列表中小于基准值的元素移到数组的底部，
+   * 将大于基准值的元素移到数组的顶部
+   * @param arr
+   * @returns {*}
+   */
+  qSort: function (arr) {
+    if (arr.length == 0) {
+      return []
+    }
+    var left = []
+    var right = []
+    var pivot = arr[0]
+    for (var i = 1; i < arr.length; i++) {
+      if (arr[i] < pivot) {
 
+        left.push(arr[i])
+      } else {
+
+        right.push(arr[i])
+      }
+    }
+    return arguments.callee(left).concat(pivot, arguments.callee(right))
+  }
 }
