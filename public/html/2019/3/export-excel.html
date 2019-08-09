@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>前端导出excel实例</title>
+</head>
+<body>
+<table border cellspacing="0">
+  <thead>
+  <tr>
+    <th>标题1</th>
+    <th>标题2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>a</td>
+    <td>b</td>
+  </tr>
+  </tbody>
+
+</table>
+<button onclick="exportE()">导出</button>
+</body>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <!--[if gte mso 9]>
+  <xml>
+    <x:ExcelWorkbook>
+      <x:ExcelWorksheets>
+        <x:ExcelWorksheet>
+          <x:Name>
+            测试表格
+          </x:Name>
+          <x:WorksheetOptions>
+            <x:DisplayGridlines/>
+          </x:WorksheetOptions>
+        </x:ExcelWorksheet>
+      </x:ExcelWorksheets>
+    </x:ExcelWorkbook>
+  </xml>
+  <![endif]-->
+  <style>
+    td{border:none;font-family: Calibri, sans-serif;} .number{mso-number-format:"0.00";}
+    .text{ mso-number-format:"@";}
+  </style>
+  <meta name=ProgId content=Excel.Sheet>
+  <meta charset=UTF-8>
+</head>
+<body>
+<table border="" cellspacing="0">
+  <thead>
+  <tr>
+    <th>
+      标题1
+    </th>
+    <th>
+      标题2
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      a
+    </td>
+    <td>
+      b
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+
+</html>
+<script type="text/javascript">
+  function exportE() {
+    var tableDate = document.getElementsByTagName('table').item(0).outerHTML
+    downloadXLSCustom('测试表格', tableDate)
+  }
+
+  function downloadXLSCustom(fileName, tableStr) {
+    var a = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>' + fileName + '</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><style>td{border:none;font-family: Calibri, sans-serif;color: red} .number{mso-number-format:"0.00";} .text{ mso-number-format:"@";}</style><meta name=ProgId content=Excel.Sheet><meta charset=UTF-8></head><body>' +
+      tableStr + "</body></html>"
+    console.log(a)
+    fileDownload(
+      "data:application/vnd.ms-excel;base64," + window.btoa(unescape(encodeURIComponent(a))),
+      "xls",
+      a,
+      fileName)
+  }
+  function fileDownload(dataURL, type, h, fileName) {
+    var q = void 0 !== document.createElement("a").download
+    if(window.Blob && window.navigator.msSaveOrOpenBlob){
+      // \ufeff字节顺序标记（英语：byte-order mark，BOM）是位于码点U+FEFF的统一码字符的名称。当以UTF-16或UTF-32来将UCS/统一码字符所组成的字符串编码时，这个字符被用来标示其字节序。它常被用来当做标示文件是以UTF-8、UTF-16或UTF-32编码的记号
+      dataURL = new window.Blob(["\ufeff" + h], {type: "text/csv"})
+      window.navigator.msSaveOrOpenBlob(dataURL, fileName + "." + type)
+    }else{
+      if(q){
+        h = document.createElement("a")
+        h.href = dataURL
+        h.download = fileName + "." + type
+        document.body.appendChild(h)
+        h.click()
+        h.remove()
+      }else{
+        console.error("The browser doesn't support downloading files")
+      }
+    }
+  }
+</script>
+</html>
