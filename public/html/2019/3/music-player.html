@@ -1,0 +1,377 @@
+<!doctype html><!--声明当前文档为html文档-->
+<html lang="en"><!--语言为英语-->
+<head><!--头部-->
+    <meta charset="UTF-8"><!--字符编码：utf-8国际编码  gb2312中文编码-->
+    <meta name="Keywords" content="关键词">
+    <meta name="Description" content="描述">
+    <title>Document</title>
+    <style>/*css样式表的衣柜*/
+    #music {
+        width: 330px;
+        height: 800px;
+        background: red;
+        margin: auto;
+        position: relative;
+    }
+
+    #music div.header {
+        width: 100%;
+        height: 250px;
+        padding-top: 30px;
+        background: blue;
+        text-align: center;
+    }
+
+    #music div.header p {
+        margin: 10px 0;
+        color: #fff;
+    }
+
+    #music div.header img {
+        border-radius: 50%;
+    }
+
+    #music div.gc {
+        width: 100%;
+        height: 430px;
+		position: relative;
+    }
+
+    #music div.play {
+        width: 100%;
+        height: 90px;
+        background: #000;
+    }
+
+    #music div.play div {
+        width: 45px;
+        height: 45px;
+        float: left;
+        background: url("/images/player_bg.png");
+        margin-top: 20px;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+    #music div.gc {
+        overflow: hidden;
+        text-align: center;
+    }
+
+    #music div.gc div.txt {
+        transition: 2s linear;
+    }
+
+    #music div.play div.pre {
+        background-position: -68px 10px;
+        margin-left: 45px;
+    }
+
+    #music div.play div.btn {
+        background-position: -110px 10px;
+        height: 48px;
+        margin-top: 14px;
+    }
+
+    #music div.play div.next {
+        background-position: -148px 10px;
+    }
+
+    #music div.play div.vom {
+        background-position: -181px 10px;
+        position: relative;
+    }
+
+    #music div.play div.vom div.voml {
+        width: 54px;
+        height: 5px;
+        background: #aaa;
+        position: absolute;
+        left: 33px;
+        top: 20px;
+        margin: 0px;
+        display: none;
+    }
+
+    #music div.play div.vom div.hk {
+        width: 10px;
+        height: 10px;
+        background: #00f;
+        position: absolute;
+        border-radius: 50%;
+        left: 54px;
+        top: -3px;
+        margin: 0px;
+    }
+
+    #div1 {
+        width: 100%;
+        height: 5px;
+        position: absolute;
+        background: #fff;
+        left: 0px;
+        bottom: 85px;
+    }
+
+    #div2 {
+        width: 10px;
+        height: 100%;
+        background: #222;
+        position: absolute;
+        border-radius: 3px;
+        left: 0px;
+        bottom: 0px;
+    }
+
+    #div3 {
+        width: 10px;
+        height: 10px;
+        background: #0f0;
+        position: absolute;
+        border-radius: 50%;
+        left: 0px;
+        bottom: -1.5px;
+    }
+
+    input {
+        position: absolute;
+        bottom: 70px;
+        background: none;
+        border: none;
+        color: #fff;
+        outline: none;
+    }
+
+    input.curr {
+        left: 0px;
+    }
+
+    input.dua {
+        right: 0px;
+    }
+    </style>
+</head>
+<body><!--身体-->
+<div id="music">
+    <div class="header">
+        <p class="gm">海阔天空</p>
+        <p class="gs">Beyound</p>
+        <img src="/images/mm4.jpg" style="width: 140px;">
+    </div>
+    <div class="gc">
+        <div class="txt"></div>
+    </div>
+    <div class="play">
+        <div class="pre"></div>
+        <div class="btn"></div>
+        <div class="next"></div>
+        <div class="vom">
+            <div class="voml">
+                <div class="hk"></div>
+            </div>
+        </div>
+    </div>
+    <div id="div1">
+        <div id="div2"></div>
+        <div id="div3"></div>
+    </div>
+    <input class="curr" type="button" value="00:00:00">
+    <input class="dua" type="button" value="00:00:00">
+</div>
+
+<textarea id="lrc" style="display:none">
+		[00:00.31]海阔天空-Beyond
+		[00:18.84]今天我
+		[00:21.85]寒夜里看雪飘过
+		[00:25.47]怀著冷却了的心窝飘远方
+		[00:31.36]风雨里追赶
+		[00:34.69]雾里分不清影踪
+		[00:37.56]天空海阔你与我
+		[00:40.37]可会变(谁没在变)
+		[00:44.00]多少次 迎著冷眼与嘲笑
+		[00:51.10]从没有放弃过心中的理想
+		[00:56.19]一刹那恍惚 若有所失的感觉
+		[01:02.23]不知不觉已变淡 心里爱(谁明白我)
+		[01:09.24]原谅我这一生不羁放纵爱自由
+		[01:16.16]也会怕有一天会跌倒
+		[01:22.45]背弃了理想谁人都可以
+		[01:28.66]那会怕有一天只你共我
+		[01:43.17]今天我
+		[01:46.70]寒夜里看雪飘过
+		[01:49.65]怀著冷却了的心窝飘远方
+		[01:55.64]风雨里追赶
+		[01:58.74]雾里分不清影踪
+		[02:01.79]天空海阔你与我
+		[02:04.66]可会变(谁没在变)
+		[02:08.60]原谅我这一生不羁放纵爱自由
+		[02:14.69]也会怕有一天会跌倒
+		[02:21.85]背弃了理想谁人都可以
+		[02:28.03]那会怕有一天只你共我
+		[03:08.35]仍然自由自我 永远高唱我歌
+		[03:17.88]走遍千里
+		[03:20.60]原谅我这一生不羁放纵爱自由
+		[03:27.32]也会怕有一天会跌倒
+		[03:33.87]背弃了理想谁人都可以
+		[03:40.12]那会怕有一天只你共我
+		[03:46.13]背弃了理想谁人都可以
+		[03:52.18]那会怕有一天只你共我
+		[03:56.95] OH YEAH
+		[04:03.11]OH YEAH
+		[04:07.98]OH......
+		[04:15.67]OH......
+		</textarea>
+<audio id="myMusic" src="/music/Beyond-海阔天空.mp3">
+    <audio>
+        <script>
+            var myMusic = document.getElementById("myMusic");
+            var lrc = document.getElementById("lrc");
+            var btn = document.getElementsByClassName("btn")[0];
+            var pre = document.getElementsByClassName("pre")[0];
+            var next = document.getElementsByClassName("next")[0];
+            var vom = document.getElementsByClassName("vom")[0];
+            var voml = document.getElementsByClassName("voml")[0];
+            var hk = document.getElementsByClassName("hk")[0];
+            var txt = document.getElementsByClassName("txt")[0];
+            var gc = document.getElementsByClassName("gc")[0];
+            var div1 = document.getElementById("div1");
+            var div2 = document.getElementById("div2");
+            var div3 = document.getElementById("div3");
+            var input = document.getElementsByTagName("input");
+            var timer = null;
+            var mark = true;
+            btn.onclick = function () {
+                if (mark) {
+                    this.style.backgroundPosition = "-289px -81px";
+                    myMusic.play();
+                    mark = false;
+                    nowTime();
+                    timer = setInterval(nowTime, 1000);
+                } else {
+                    this.style.backgroundPosition = "-110px 10px";
+                    myMusic.pause();
+                    mark = true;
+                    clearInterval(timer);
+                }
+                input[1].value = time(myMusic.duration);
+            }
+            //获取歌词
+            var Lrc = lrc.value;
+            var lrcArr = Lrc.split("[");
+            var html = '';
+            for (var i = 0; i < lrcArr.length; i++) {
+                //00:00.31 海阔天空-Beyond
+                var arr = lrcArr[i].split("]");
+                var timer = arr[0].split(".");
+                var times = timer[0].split(":");
+                //分离出时间
+                var ms = times[0] * 60 + times[1] * 1;
+                //获取歌词部分
+                var text = arr[1];
+                //console.log(ms);
+                //console.log(text);
+                if (text) {
+                    html += "<p id=s" + ms + ">" + text + "</p>"
+                }
+                txt.innerHTML = html;
+            }
+            //歌词联动
+            //timeupdate 时间改变就触发
+            myMusic.addEventListener("timeupdate", function () {
+                var curr = parseInt(this.currentTime);
+                var duration = parseInt(this.duration);
+                if (document.getElementById("s" + curr)) {
+                    document.getElementById("s" + curr).style.color = "#0f0";
+					document.getElementById("s" + curr).scrollIntoView()
+                    /*var offsetTop = document.getElementById("s" + curr).offsetTop
+				    txt.style.marginTop = -(offsetTop) + "px";*/
+                }
+            });
+
+            function nowTime() {//获取当前时间 并在input里显示
+                input[0].value = time(myMusic.currentTime);
+                var n = myMusic.currentTime / myMusic.duration;
+                div3.style.left = n * (div1.offsetWidth - div3.offsetWidth) + "px";
+                div2.style.width = (10 + n * (div1.offsetWidth - div3.offsetWidth)) + "px";
+            }
+
+            function time(cTime) {
+                cTime = parseInt(cTime);
+                var h = zero(Math.floor(cTime / 3600));
+                var m = zero(Math.floor(cTime % 3600 / 60));
+                var s = zero(Math.floor(cTime % 60));
+                return h + ":" + m + ":" + s;
+            }
+
+            function zero(num) {
+                if (num < 10) {
+                    return "0" + num;
+                } else {
+                    return " " + num;
+                }
+            }
+
+            //播放进度条
+            div3.onmousedown = function (ev) {
+                var ev = ev || window.event;
+                var x = ev.clientX - div3.offsetLeft;
+                document.onmousemove = function (ev) {
+                    var ev = ev || window.event;
+                    var _left = ev.clientX - x;
+                    if (_left < 0) {
+                        _left = 0;
+                    } else if (_left > div1.offsetWidth - div3.offsetWidth) {
+                        _left = div1.offsetWidth - div3.offsetWidth;
+                    }
+                    div3.style.left = _left + "px";
+                    div2.style.width = (_left + 10) + "px";
+
+                    var n = _left / (div1.offsetWidth - div3.offsetWidth);
+                    //console.log(n);
+                    myMusic.currentTime = n * myMusic.duration;
+                    nowTime();
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+            //音量控制条
+            var on = true;
+            vom.onclick = function () {
+                if (on) {
+                    voml.style.display = "block";
+                    on = false;
+                } else {
+                    voml.style.display = "none";
+                    on = true;
+                }
+
+            }
+            //音量进度条
+            hk.onmousedown = function (ev) {
+                var ev = ev || window.event;
+                var x = ev.clientX - voml.offsetLeft;
+
+                document.onmousemove = function (ev) {
+                    var ev = ev || window.event;
+                    var _left = ev.clientX - x;
+                    //console.log(_left);
+                    if (_left < 0) {
+                        _left = 0;
+                    } else if (_left > voml.offsetWidth - hk.offsetWidth) {
+                        _left = voml.offsetWidth - hk.offsetWidth;
+                    }
+                    hk.style.left = _left + "px";
+
+                    var n = _left / (voml.offsetWidth - hk.offsetWidth);
+                    //console.log(n);
+                    myMusic.volume = n;
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+        </script>
+</body>
+</html>
