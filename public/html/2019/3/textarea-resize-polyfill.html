@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>textarea-resize-polyfill</title>
+  <script defer src="/js/polyfill/resize-polyfill.js" defer=></script>
+  <style>
+    /*为了使各个浏览器保持一致*/
+    textarea {
+      vertical-align: top;
+      box-sizing: border-box;
+      resize: none;
+      overflow: auto;
+    }
+    textarea[resize] {
+      resize: both;
+    }
+    textarea[resize="vertical"] {
+      resize: vertical;
+    }
+    textarea[resize="horizontal"] {
+      resize: both;
+    }
+  </style>
+</head>
+<body>
+<textarea name="aaa" id="aaa" cols="30" rows="3" resize></textarea>
+</body>
+</html>
