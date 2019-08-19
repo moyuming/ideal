@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>目录树实例</title>
+  <style>
+    ul {
+      list-style-type: none;
+    }
+    label,li{
+      user-select: none;
+    }
+    input:checked ~ ul {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="lists">
+  <ul>
+    <li class="sub">
+      <input type="checkbox" id="fold1" class="test_checkbox">
+      <label for="fold1">IT互联网</label>
+      <ul>
+        <li class="sub">编辑语言
+          <ul style="display: none;">
+            <li>java</li>
+            <li>c#/.net</li>
+            <li>python</li>
+            <li>前端开发</li>
+          </ul>
+        </li>
+        <li class="sub">移动开发
+          <ul style="display: block;">
+            <li>android开发</li>
+            <li>IOS开发</li>
+          </ul>
+        </li>
+        <li class="sub">游戏开发
+          <ul style="display: block;">
+            <li>phaser游戏开发</li>
+            <li class="sub">webGL游戏开发
+              <ul style="display: block;">
+                <li class="sub">3D游戏
+                  <ul style="display: block;">
+                    <li>aaaa1</li>
+                    <li>aaaaa2</li>
+                  </ul>
+                </li>
+                <li>2D游戏</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li class="sub">
+      <input type="checkbox" id="fold2" class="test_checkbox">
+      <label for="fold2">设计创作</label>
+      <ul>
+        <li class="sub">平面设计
+          <ul style="display: none;">
+            <li>电商美工</li>
+            <li>综合平面设计</li>
+            <li>摄影后期</li>
+          </ul>
+        </li>
+        <li class="sub">UI设计
+          <ul style="display: block;">
+            <li>交互设计</li>
+            <li>webUI设计</li>
+            <li>游戏UI设计</li>
+          </ul>
+        </li>
+        <li>软件设计</li>
+      </ul>
+    </li>
+    <li class="sub">
+      <input type="checkbox" id="fold3" class="test_checkbox">
+      <label for="fold3">升学考研</label>
+      <ul>
+        <li>考研</li>
+        <li>大学</li>
+        <li>高中</li>
+        <li>初中</li>
+      </ul>
+    </li>
+    <li class="sub">
+      <input type="checkbox" id="fold4" class="test_checkbox">
+      <label for="fold4">职企考证</label>
+      <ul>
+        <li class="sub">公务员
+          <ul>
+            <li>教师考试</li>
+            <li>建筑工程</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

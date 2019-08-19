@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>背景音乐自动播放实例</title>
+</head>
+<body>
+IE浏览器，360浏览器支持，火狐会阻止，需要允许，谷歌需要出发用户行为,可以配合下面代码实现 <br>
+var audio = new Audio('/music/Beyond-海阔天空.mp3')
+  audio.addEventListener('canplaythrough', function (event) {
+  audio.play()
+}) <br>
+document.addEventListener('click', function (event) {
+  audio.play()
+})
+</body>
+<script>
+  var audio = new Audio('/music/Beyond-海阔天空.mp3')
+  audio.addEventListener('canplaythrough', function (event) {
+    audio.play()
+  })
+  document.addEventListener('click', function (event) {
+    audio.play()
+  })
+</script>
+</html>
