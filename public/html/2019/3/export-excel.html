@@ -93,17 +93,15 @@
   function fileDownload(dataURL, type, h, fileName) {
     var q = void 0 !== document.createElement("a").download
     if(window.Blob && window.navigator.msSaveOrOpenBlob){
-      // \ufeff字节顺序标记（英语：byte-order mark，BOM）是位于码点U+FEFF的统一码字符的名称。当以UTF-16或UTF-32来将UCS/统一码字符所组成的字符串编码时，这个字符被用来标示其字节序。它常被用来当做标示文件是以UTF-8、UTF-16或UTF-32编码的记号
-      dataURL = new window.Blob(["\ufeff" + h], {type: "text/csv"})
+      // IE
+      dataURL = new window.Blob([h], {type: "text/csv"})
       window.navigator.msSaveOrOpenBlob(dataURL, fileName + "." + type)
     }else{
       if(q){
         h = document.createElement("a")
         h.href = dataURL
         h.download = fileName + "." + type
-        document.body.appendChild(h)
         h.click()
-        h.remove()
       }else{
         console.error("The browser doesn't support downloading files")
       }
