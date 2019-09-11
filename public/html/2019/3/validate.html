@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>表单验证单独使用示意</title>
+  <link rel="stylesheet" href="/html/2019/3/Tips.css">
+  <style>
+    #idMark {
+      vertical-align: text-top;
+    }
+    form{
+      margin-left: 20px;
+    }
+    input{
+      width: 150px;
+    }
+    input[type = "radio"]{
+      width: initial;
+    }
+    input::-webkit-inner-spin-button {
+      display: none;
+    }
+    /*校验样式*/
+    .ui-input.error, .ui-input>.error {
+      border-color: #f4615c;
+    }
+    .ui-radio {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgba(208,208,213,.99);
+      border-radius: 50%;
+      background-color: #fff;
+      box-sizing: border-box;
+      vertical-align: -.5ex;
+      *vertical-align: 0;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-transition: border-color .2s;
+      transition: border-color .2s;
+      overflow: hidden;
+    }
+    .error.ui-radio {
+      border-color: #f4615c;
+    }
+    .ui-radio::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      margin: 4px auto 0;
+      border-radius: 50%;
+      background-color: #2486ff;
+      visibility: hidden;
+    }
+    :checked+.ui-radio::before {
+      visibility: visible;
+      -webkit-animation: bounceIn .2s;
+      animation: bounceIn .2s;
+    }
+  </style>
+</head>
+<body>
+<h3>点击注册按钮测试</h3>
+<form action="../../common/cgi/submit.html" method="post">
+  <div>
+    <label>每日限额<span class="red abs">*</span></label>
+    <input type="number" class="ui-input" min="5" max="500" size="5" required placeholder="直接输入数值" pattern="^\-?\d+(\.\d+)?$">
+  </div>
+  <!--<div>
+    <label for="idEmail">邮箱<span class="red abs">*</span></label>
+    <input type="email" id="idEmail" class="ui-input" required autocomplete>
+  </div>
+  <div>
+    <label for="idTel">手机号<span class="red abs">*</span></label>
+    <input type="tel" id="idTel" class="ui-input" size="12" name="tel" required>
+  </div>
+  <div>
+    <label for="bankAccount">银行账号<span class="red abs">*</span></label>
+    <input id="bankAccount" class="ui-input" pattern="^\d{16}$" required>
+  </div>
+  <div>
+    <label>每日限额<span class="red abs">*</span></label>
+    <input type="number " class="ui-input" min="5" max="500" size="5" required placeholder="直接输入数值" pattern="^\-?\d+(\.\d+)?$">
+  </div>
+  <div>
+    <label>密码<span class="red abs">*</span></label>
+    <input type="password" id="pwd" class="ui-input" required>
+  </div>
+  <div>
+    <label for="pwdAgain">确认密码<span class="red abs">*</span></label>
+    <input type="password" id="pwdAgain" class="ui-input" required>
+  </div>-->
+  <div>
+    <label>您的性别<span class="red abs">*</span></label>
+    <input type="radio" id="radioMale" name="validateRadio" required hidden>
+    <label class="ui-radio" for="radioMale"></label>
+    <label class="mr20" for="radioMale">男士</label>
+    <input type="radio" id="radioFemale" name="validateRadio" hidden>
+    <label class="ui-radio" for="radioFemale"></label>
+    <label for="radioFemale" class="ml5">女士</label>
+  </div>
+  <div>
+    <label>个人网站<span class="red abs">*</span></label>
+    <input class="ui-input" type="url" required>
+  </div>
+  <div>
+    <label>所在城市<span class="red abs">*</span></label>
+    <select class="w100" required>
+      <option value="">请选择</option>
+      <option value="sz">深圳</option>
+      <option value="sh">上海</option>
+      <option value="bj">北京</option>
+      <option value="cd">成都</option>
+      <option value="wh">武汉</option>
+    </select>
+  </div>
+
+
+
+
+  <div>
+    <label for="idCode">验证码<span class="red abs">*</span></label>
+    <input type="code" id="idCode" class="ui-input" size="4" name="code" required pattern="\d{4}">
+  </div>
+  <div>
+    <div>
+      <label for="idMark">备注</label>
+      <textarea id="idMark" maxlength="140" rows="5">附件</textarea>
+    </div>
+  </div>
+  <p>
+    <button type=submit id="formSubmit" class="clip">注册</button>
+    <!--<input type="submit" id="formSubmit" class="clip" value="注册">-->
+  </p>
+</form>
+<script src="/lib/jquery/jquery-1.12.4.min.js"></script>
+<script src="/lib/jquery/plugin/Validate.js"></script>
+<script>
+  //https://www.zhangxinxu.com/wordpress/2012/12/jquery-html5validate-html5-form-validate-plugin/
+  //https://l-ui.com/content/apis/validate.html
+  // 表单验证
+  var pwd = $('#pwd'), pwdAgain = $('#pwdAgain');
+  // 文件上传按钮元素
+  var btnFile = $('label[for="validateFile"]');
+  // 隐藏input框
+  var hiddenFile = $('#idImgUrl');
+  // 如果选择文件
+  $('#validateFile').change(function() {
+    // 直接trigger hidden input框change事件
+    hiddenFile.val('xxx.png').trigger('change');
+  });
+  // 验证绑定
+  $('form').validate(function () {
+    alert('验证通过');
+  }, {
+    validate: [{
+      // 演示替换内置的提示
+      id: 'bankAccount',
+      prompt: {
+        // 否则提示文字就是内置的“内容格式不符合要求”
+        unmatch: '银行账户只能是16位数值'
+      }
+    }, {
+      // 演示添加自定义的验证
+      id: 'pwd',
+      method: function (el) {
+        var valueAgain = pwdAgain.val();
+        if (valueAgain && el.val() != valueAgain) {
+          return '前后密码不一致';
+        } else {
+          pwdAgain.removeClass('error');
+        }
+      }
+    }, {
+      id: 'pwdAgain',
+      method: function (el) {
+        if (el.val() != pwd.val()) {
+          return '前后密码不一致';
+        } else {
+          pwd.removeClass('error');
+        }
+      }
+    }, {
+      // 验证头像必传
+      id: 'idImgUrl',
+      method: function (el) {
+        // el指存放身份证图片地址的hidden类型的input框
+        // 隐藏元素无法定位，转移提示元素给按钮,如果目标静态，建议放在外面；如果是动态的，则必须用在method方法中
+        el.data('target', btnFile);
+        // 返回错误提示
+        if (el.val() == '') {
+          return '尚未上传头像';
+        }
+      }
+    }]
+  });
+</script>
+</body>
+</html>
