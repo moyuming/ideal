@@ -20,7 +20,6 @@
       i: moduleId,
       l: false,
       exports: {}
-
     };
 
     // Execute the module function
