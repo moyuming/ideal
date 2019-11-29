@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>validate-input</title>
+  <link rel="stylesheet" href="/html/2019/3/Tips.css">
+  <style>
+    input::-webkit-inner-spin-button {
+      display: none;
+    }
+    /*校验样式*/
+    .ui-input.error{
+      border-color: #f4615c;
+    }
+  </style>
+</head>
+<body>
+<h3>点击注册按钮测试</h3>
+<form>
+  <div>
+    <label>每日限额<span>*</span></label>
+    <input type="number" class="ui-input" min="5" max="500" size="5" required
+           placeholder="直接输入数值" pattern="^\-?\d+(\.\d+)?$">
+  </div>
+  <div>
+    <label>个人网站<span>*</span></label>
+    <input class="ui-input" type="url" required>
+  </div>
+  <p>
+    <button type=submit id="formSubmit" class="clip">验证</button>
+  </p>
+</form>
+<script src="/lib/jquery/jquery-1.12.4.min.js"></script>
+<script src="/lib/jquery/plugin/Validate.js"></script>
+<script>
+  $('form').validate(function () {
+    alert('验证通过');
+  }, {
+    validate: []
+  });
+</script>
+</body>
+</html>

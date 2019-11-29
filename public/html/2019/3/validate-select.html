@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>validate-select</title>
+  <link rel="stylesheet" href="/html/2019/3/Tips.css">
+  <style>
+
+  </style>
+</head>
+<body>
+<h3>点击注册按钮测试</h3>
+<form>
+  <div>
+    <label>所在城市<span>*</span></label>
+    <select required>
+      <option value="">请选择</option>
+      <option value="sz">深圳</option>
+      <option value="sh">上海</option>
+      <option value="bj">北京</option>
+      <option value="cd">成都</option>
+      <option value="wh">武汉</option>
+    </select>
+  </div>
+  <p>
+    <button type=submit id="formSubmit" class="clip">验证</button>
+  </p>
+</form>
+<script src="/lib/jquery/jquery-1.12.4.min.js"></script>
+<script src="/lib/jquery/plugin/Validate.js"></script>
+<script>
+  $('form').validate(function () {
+    alert('验证通过');
+  }, {
+    validate: []
+  });
+</script>
+</body>
+</html>
