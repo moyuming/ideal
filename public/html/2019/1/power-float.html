@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>万能浮动插件实例</title>
+  <script type="text/javascript" src="/lib/jquery/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="/lib/jquery/plugin/jquery-powerFloat.js"></script>
+  <link rel="stylesheet" href="/lib/jquery/plugin/powerFloat.css"></link>
+  <style>
+    #targetBox{
+      z-index: 100;
+      position: absolute;
+      height: 100px;
+      display: none;
+      border: solid 1px red;
+      background-color: #fff;
+    }
+   /* #trigger1:hover + #targetBox{
+      display: block;
+    }*/
+  </style>
+</head>
+<body>
+<a id="trigger" href="javascript:;" rel="targetBox">默认rel加载</a>
+<a id="trigger1" href="javascript:;" rel="/html/2019/img/1.jpg">rel属性显示图片</a>
+<div>
+  <button id="trigger2">加载外部HTML片段</button>
+</div>
+<div id="targetBox">目标浮动框</div>
+<script>
+  $("#trigger").powerFloat();
+  $("#trigger1").powerFloat({
+    targetMode: "ajax"
+  });
+  $("#trigger2").powerFloat({
+    eventType: "click",
+    target: "/html/2019/1/test.html",
+    targetMode: "ajax"
+  });
+</script>
+</body>
+</html>

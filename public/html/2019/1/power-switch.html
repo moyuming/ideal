@@ -15,9 +15,11 @@
       margin: 0px auto 0;
       overflow: hidden;
     }
+
     .index_hidden {
       display: none;
     }
+
     .index_slide {
       position: absolute;
       left: 0;
@@ -25,6 +27,7 @@
       width: 100%;
       height: 100%;
     }
+
     .index_nav a {
       display: inline-block;
       width: 18px;
@@ -38,14 +41,17 @@
       font-size: 12px;
       color: #333;
     }
+
     .index_nav .on {
       border-color: #34538b;
       background-color: #34538b;
       color: #fff;
     }
+
     .index_prev:hover {
       background-position: 0 -34px;
     }
+
     .index_next:hover {
       background-position: -34px -34px;
     }
@@ -56,6 +62,7 @@
       margin-right: auto;
       position: relative;
     }
+
     .index_prev, .index_next {
       position: absolute;
       top: -240px;
@@ -63,53 +70,191 @@
       height: 34px;
       background: url('/images/arrows.png') no-repeat;
     }
+
     .index_prev {
       background-position: 0 0;
       left: -80px;
     }
+
     .index_next {
       background-position: -34px 0;
       right: -80px;
+    }
+    .word_slide {
+      height: 20px;
+      line-height: 20px;
+      overflow: hidden;
+      position: relative;
+      font-size: 12px;
+      padding-left: 25px;
+      list-style-type: disc;
+      color: #666;
+    }
+    .word_slide li {
+      position: absolute;
+      display: none;
     }
   </style>
 </head>
 <body>
 <div class="auto">
-  <!--  body of index.html -->
-  <div class="index_box">
-    <div id="indexSlide1" class="index_slide">
-      <img src="../img/one.png" alt="">
+  <div>
+    <h1>轮播图</h1>
+    <div class="index_box">
+      <div id="indexSlide1" class="index_slide">
+        <img src="../img/one.png" alt="">
+      </div>
+      <div id="indexSlide2" class="index_slide index_hidden">
+        <img src="../img/two.png" alt="">
+      </div>
+      <div id="indexSlide3" class="index_slide index_hidden">
+        <img src="../img/three.jpg" alt="">
+      </div>
+      <div id="indexSlide4" class="index_slide index_hidden">
+        <img src="../img/four.jpg" alt="">
+      </div>
     </div>
-    <div id="indexSlide2" class="index_slide index_hidden">
-      <img src="../img/two.png" alt="">
-    </div>
-    <div id="indexSlide3" class="index_slide index_hidden">
-      <img src="../img/three.jpg" alt="">
-    </div>
-    <div id="indexSlide4" class="index_slide index_hidden">
-      <img src="../img/four.jpg" alt="">
+    <div id="indexControl" class="index_control"></div>
+    <p id="indexNav" class="index_nav tc">
+      <a href="javascript:" class="on" data-rel="indexSlide1">1</a>
+      <a href="javascript:" data-rel="indexSlide2">2</a>
+      <a href="javascript:" data-rel="indexSlide3">3</a>
+      <a href="javascript:" data-rel="indexSlide4">4</a>
+    </p>
+  </div>
+  <div>
+    <h1>手风琴效果</h1>
+    <ul class="hand_toggle">
+      <li class="hand_list">
+        <a href="#;" class="hand_title handTitle" data-rel="handContent1">手风琴效果</a>
+        <div id="handContent1" class="hand_content">典型的手风琴效果的UI就是当前这个效果。</div>
+      </li>
+      <li class="hand_list">
+        <a href="#;" class="hand_title handTitle" data-rel="handContent2">有一些变体</a>
+        <div id="handContent2" class="hand_content" style="display:none;">手风琴效果还有一些变体。模样虽不像，本质一致。</div>
+      </li>
+      <li class="hand_list">
+        <a href="#;" class="hand_title handTitle" data-rel="handContent3">甚至这个</a>
+        <div id="handContent3" class="hand_content" style="display:none;">更多展开与收起效果也算，因此，会在下面展示。</div>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <h1>可伸缩的垂直导航效果</h1>
+    <div id="navvBar" class="navv_bar">
+      <h4 class="navv_title" title="收起" data-rel="navvUl1">订单中心<span class="navv_cor">▼</span></h4>
+      <ul id="navvUl1" class="navv_ul">
+        <li>我的订单</li>
+        <li>我的团购</li>
+        <li>我的关注</li>
+      </ul>
+      <h4 class="navv_title" title="收起" data-rel="navvUl2">客户服务<span class="navv_cor">▼</span></h4>
+      <ul id="navvUl2" class="navv_ul">
+        <li>返修/退换货</li>
+        <li>取消订单记录</li>
+        <li>我的投诉</li>
+      </ul>
+      <h4 class="navv_title" title="收起" data-rel="navvUl3">账户中心<span class="navv_cor">▼</span></h4>
+      <ul id="navvUl3" class="navv_ul">
+        <li>账户信息</li>
+        <li>账户安全</li>
+        <li>消费记录</li>
+        <li>我的积分</li>
+      </ul>
     </div>
   </div>
-  <div id="indexControl" class="index_control"></div>
-  <p id="indexNav" class="index_nav tc">
-    <a href="javascript:" class="on" data-rel="indexSlide1">1</a>
-    <a href="javascript:" data-rel="indexSlide2">2</a>
-    <a href="javascript:" data-rel="indexSlide3">3</a>
-    <a href="javascript:" data-rel="indexSlide4">4</a>
-  </p>
+  <div>
+    <h1>文字广告效果</h1>
+    <ul id="wordSlide" class="word_slide" data-rel="#wordSlide li">
+      <li id="wordList1" style="display: list-item;" data-rel="wordList1">
+        <a href="##">媒体解析三中全会焦点 关注户改收入分配等</a>
+      </li>
+      <li id="wordList2" data-rel="wordList2">
+        <a href="##">全会纲领性文件如何出台</a>
+      </li>
+      <li id="wordList3" data-rel="wordList3"><a href="##">国台办:“台独”图谋搞乱香港绝不可能得逞</a></li>
+      <li id="wordList4" data-rel="wordList4"><a href="##">中央将遴选100名具冲击诺贝尔奖潜力人才</a></li>
+      <li id="wordList5" data-rel="wordList5"><a href="##">国信办主任鲁炜：网聚正能量 共筑中国梦</a></li>
+      <li id="wordList6" data-rel="wordList6"><a href="##">要求主流新闻网站要做到八个带头</a></li>
+    </ul>
+  </div>
+  <div>
+    <h1>更多展开与收起效果</h1>
+    <p>自从日本开发出只有女性才能操纵的飞行超兵器“IS”（即“斯特拉托斯”之后，世界发生了翻天覆地的变化，女性的地位被提升到优先准位。
+      <span class="aniMoreToggle dn">培育IS操纵者的学校“IS学院”每年接纳来自世界各地的优秀候补生少女。然而，主人公织斑一夏虽然是个男生却不知 因为什么原因能够启动IS，因此他被强制送入了IS学院就读。织斑一夏从此成为女校中的万红丛中一点绿，从他青梅竹马的剑道少女帚开始，不同国籍不同性格</span> ... ...</p>
+    <p class="tr"><a href="javascript:" id="moreToggle" data-rel="aniMoreToggle" data-toggle="收起更多↑">展开更多↓</a></p>
+  </div>
+  <div>
+    <h1>每次显示2条</h1>
+    <ul id="moreComment" class="more_comment">
+      <li class="mt10">
+        <div class="more_detail">
+          从演员说起： 安吉拉宝贝作为麻杆届的优秀代表，在唐人以丰腴为美的审美观里，连珠圆玉润尚做不到，不知道她是怎么混上花魁的，（喂，你是给评委塞钱了吧。）在片中，她要做的只有两件事，一是如蛇精一般不断扭曲腰身，二是扮楚楚可怜状。在成为花魁之后，她体内文艺细菌蠢蠢作祟，毅然决然地拒绝了金钱和权力的腐蚀，决定把自己的初夜献给大湿人元公子。正当豆瓣文艺屌........
+        </div>
+      </li>
+      <li>
+        <div class="more_detail">
+          故事的开头是这样的，大唐的水军出征去打击敌对势力，但是刚进伟大航路的时候，海中突然出现了一个怪兽样神秘物体，战斗力奇强，几下就把水军打散了。 怪兽的出现让不明真相的围观群众三观尽毁，开始背离社会主义精神文明道路，迷信起腐朽的资本主义文化来。 皇上很生气，指示公安尽快破案，捉拿怪兽。 狄仁杰在大街上碰到了anglebaby饰演的女优。这个女优是个日本.........
+        </div>
+      </li>
+      <li class="dn">
+        <div class="more_detail">
+          当故事开始,一片完全不符合动力学原理的方头战船迎面而来的时候,俺仿佛梦回龙门飞甲,只是这次站站船上的不是厂花雨化田。 久违了,徐克的3D。 应该说神都龙王在技术上比龙门飞甲有所进步，特别是景深，但比例变形的问题似乎随之变得更加严重了，全片第一次出现神都洛阳的全景，酷似迷你街道模型，而且以后所有的大场景都存在这个问题。 外行谈技术，只能说直观.........
+        </div>
+      </li>
+      <li class="dn">
+        <div class="more_detail">去看了徐克的新作《狄仁杰之神都龙王》，见到了老爷本人，很高兴。 作为10年刘德华、李冰冰主演的那部《狄仁杰之通天帝国》的前传，这两部电影的内容联系不大，唯一明确的联系是狄仁杰那把“用这柄锏与对手的兵器向碰，便能听出裂隙，击之必断”的亢龙锏。徐克电影的编剧方面常是软肋，天马行空的亮点不少，但是剧本的整体性和合理性一向欠缺。近年来，老爷的剧本.........</div>
+      </li>
+      <li><a href="javascript:" id="moreCommentBtn" class="more_comment_btn" data-rel="#moreComment .dn">显示更多 ↓</a></li>
+    </ul>
+  </div>
 </div>
 </body>
 <script>
   //文档：http://htmlpreview.github.io/?https://github.com/zhangxinxu/powerSwitch/blob/master/api/index.html#//htmlpreview.github.io/?https://github.com/zhangxinxu/powerSwitch/blob/master/api/index.html#animation
+  //轮播图
   $("#indexNav a").powerSwitch({
     animation: "translate",
     classAdd: "on",//激活按钮类名
     classPrefix: "index_",//按钮样式类前缀
     container: $("#indexControl"),//有container才会有上一页和下一页按钮
-    autoTime:2000,
-    eventType:'hover',
+    autoTime: 2000,
+    eventType: 'hover',
   });
-
+  //手风琴
+  $(".handTitle").powerSwitch({
+    animation: "slide"
+  });
+  //垂直导航
+  $("#navvBar h4").powerSwitch({
+    toggle: true,
+    onSwitch: function(target, display) {
+      // 三角变化
+      $(this).find("span").html(display? "▼": "▶");
+    }
+  });
+  //文字广告
+  $("#wordSlide li").powerSwitch({
+    autoTime: 3000,
+    direction: "vertical",
+    animation: "translate"
+  });
+  //更多展开与收起
+  var initHtmlMore = $("#moreToggle").powerSwitch({
+    toggle: true,
+    onSwitch: function(target, display) {
+      // 提示文字变化
+      if (display == false) {
+        $(this).html(initHtmlMore);
+      } else {
+        $(this).html($(this).attr("data-toggle"));
+      }
+    }
+  }).html();
+  //每次显示2条
+  $("#moreCommentBtn").powerSwitch({
+    number: 2
+  });
 </script>
 <!--https://www.zhangxinxu.com/wordpress/2013/11/jquery-powerswitch-%e4%b8%87%e8%83%bd%e5%88%87%e6%8d%a2-slide-%e6%8f%92%e4%bb%b6/-->
 </html>
