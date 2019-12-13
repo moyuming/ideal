@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>icon图标最佳实践</title>
+  <style>
+    .box {
+      line-height: 20px;
+    }
+    /*背景图片可以指定合并的雪碧图*/
+    .icon {
+      display: inline-block;
+      width:20px; height:20px;
+      white-space: nowrap;
+      letter-spacing: -1em;
+      text-indent: -999em;
+    }
+    .icon:before {
+      content:'\3000';
+    }
+    .icon-delete {
+      background: url("/html/2019/img/delete.png") no-repeat center;
+    }
+    .large {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <p><i class="icon icon-delete">删除</i>随便什么文字</p>
+  <p class="large">
+    <i class="icon icon-delete">删除</i>随便什么文字
+  </p>
+  <div>
+    这里 20px 只是一种经验取值，因为目前的常见站点的字号和行间
+    距比较合乎这个大小。如果你的项目设计很大气，字号默认都是 16px，那么图标规格和默认
+    行号可能 24px会更合适一点,svg图标指定宽高为1em,这样无论图标是个大号文字混在一起还是和小号文字混在一起，都能和当前文字大小保持一
+    致，既省时又省力。
+  </div>
+</div>
+</body>
+</html>
