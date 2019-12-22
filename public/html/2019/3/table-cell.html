@@ -41,6 +41,16 @@
       background-color: #cd0000;
       margin: auto;
     }
+    .flex{
+      display: box;
+      display: flexbox;
+      display: flex;
+      flex-direction: row;
+      align-items:stretch;
+    }
+    .flex-item{
+      width: 50px;
+    }
   </style>
 </head>
 <body>
@@ -67,6 +77,64 @@
 
   </div>
 </div>
-
+<!-- ie9不支持 -->
+<div class="flex">
+  <div class="flex-item">
+      <table>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2</td>
+          </tr>
+        </table>
+  </div>
+  <div>
+      <table style="height: 100%;background-color: #cd0000;">
+          <tr>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+        </table>
+  </div>
+  <!-- <table>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </table> -->
+</div>
 </body>
 </html>
