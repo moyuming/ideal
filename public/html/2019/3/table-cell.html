@@ -44,12 +44,33 @@
     .flex{
       display: box;
       display: flexbox;
+      display: -ms-flexbox;/*ie10*/
       display: flex;
       flex-direction: row;
       align-items:stretch;
     }
     .flex-item{
-      width: 50px;
+      box-sizing: border-box;
+    }
+    table{
+      border: 1px solid #000;
+    }
+    .box{
+      height: 100px;
+      display: box;
+      display: flexbox;
+      display: -ms-flexbox;/*ie10*/
+      display: flex;
+      flex-direction: column;
+      -ms-flex-direction: column;
+    }
+    .box .label{
+      -ms-flex: 1;
+      flex: 1;
+    }
+    .box textarea{
+      -ms-flex: 1;
+      flex: 1
     }
   </style>
 </head>
@@ -119,22 +140,10 @@
             </tr>
         </table>
   </div>
-  <!-- <table>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-  </table>
-  <table>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-  </table> -->
+</div>
+<div class="box">
+  <div class="label"></div>
+  <textarea></textarea>
 </div>
 </body>
 </html>

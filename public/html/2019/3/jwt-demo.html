@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jwt用户验证实例</title>
+  <script src="/lib/jquery/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<form id="form-regist">
+  <label for="">用户名：</label><input type="text" name="username">
+  <label for="">密码：</label><input type="password" name="password">
+  <button id="regist">注册</button>
+</form>
+<form id="form-login">
+  <label for="">用户名：</label><input type="text" name="username">
+  <label for="">密码：</label><input type="password" name="password">
+  <button id="login">登录</button>
+</form>
+<button id="list">获取数据</button>
+</body>
+<script>
+  //请求拦截
+  $(document).ajaxSend(function(evt, request, settings){
+    var token = localStorage.token
+    if (token) {
+      request.setRequestHeader('Authorization', 'Bearer ' +token)
+    }
+  });
+  $.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+      if (o[this.name] !== undefined) {
+        if (!o[this.name].push) {
+          o[this.name] = [o[this.name]];
+        }
+        o[this.name].push(this.value || '');
+      } else {
+        o[this.name] = this.value || '';
+      }
+    });
+    return o;
+  }
+  $("#regist").click(function (event) {
+    event.preventDefault()
+    var user = $("#form-regist").serializeObject()
+    $.post('/login/signup', user, function (rs) {
+      console.log(rs);
+    })
+  })
+  $("#login").click(function (event) {
+    event.preventDefault()
+    var user = $("#form-login").serializeObject()
+    $.post('/login/login', user, function (rs) {
+      var token = rs.data.token
+      localStorage.setItem('token', token)
+    })
+  })
+  $("#list").click(function (event) {
+    $.get('/login/user', function (rs) {
+      console.log(rs);
+    })
+  })
+</script>
+</html>

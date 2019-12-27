@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IE-flex布局</title>
+  <script src="/lib/vue/vue.js"></script>
+  <style>
+    .flex-box{
+      margin-top: 5px;
+      display: flex;
+      display: -ms-flexbox;
+      align-items: stretch;
+    }
+    .flex-350 {
+      -ms-flex: 1 1 350px;
+      flex: 1 1 350px;
+    }
+    .main-info {
+      height: 100%;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+    }
+    table{
+      height: 100%;
+      border-collapse: collapse;
+      table-layout:fixed;
+    }
+    .info-head{
+      border: 1px solid #000;
+    }
+    table td{
+      height: auto;
+      border: 1px solid #000;
+    }
+    /*模拟表格*/
+    .table{
+      height: 100%;
+      display: flex;
+      display: -ms-flexbox;
+      align-items: stretch;
+      -ms-flex-align: stretch;
+      flex-direction: column;
+      -ms-flex-direction: column;
+    }
+    ul{
+      flex: 1 1;
+      -ms-flex: 1 1;
+      font-size: 0;
+      width: 761px;
+      margin: 0;
+      padding: 0;
+    }
+    ul:first-child{
+      flex: 0 0 28px;
+      -ms-flex: 0 0 28px;
+    }
+    ul li{
+      width: 25%;
+      height: 100%;
+      box-sizing: border-box;
+      display: inline-block;
+      list-style-type: none;
+      border: 1px solid #000;
+      font-size: 16px;
+    }
+    li span{
+      vertical-align: middle;
+    }
+    li:before{
+      content: "";
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+    .note{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="flex-box">
+    <div>
+      <div class="main-info">
+        <div class="info-head">
+          公司概况
+        </div>
+        <div class="info-body">
+          <table>
+            <colgroup width="760">
+              <col width="190">
+              <col width="190">
+              <col width="190">
+              <col width="190">
+            </colgroup>
+            <tbody>
+            <tr style="height: 28px;">
+              <td><span>成立时间</span></td>
+              <td></td>
+              <td><span>公司业绩起始日期</span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><span>公司管理规模（亿）</span></td>
+              <td>gfese</td>
+              <td><span>办公城市</span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><span>办公地址</span></td>
+              <td colspan="3"></td>
+            </tr>
+            <tr>
+              <td><span>公司实缴资本(万)</span></td>
+              <td></td>
+              <td><span>是否有投顾资质</span></td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="flex-350">
+      <table>
+        <colgroup>
+          <col width="130">
+          <col width="50">
+          <col width="">
+        </colgroup>
+        <tbody>
+        <tr style="height: 28px;">
+          <td><span>打分指标项</span></td>
+          <td><span>得分</span></td>
+          <td><span>备注</span></td>
+        </tr>
+        <tr>
+          <td><span>成立时间</span></td>
+          <td>
+          </td>
+          <td rowspan="3">
+            <div class="item" v-for="(item, index) in list" :key="index">{{item}}</div>
+            <button @click="add">添加</button>
+          </td>
+        </tr>
+        <tr>
+          <td><span>实缴资本</span></td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td><span>投顾资质</span></td>
+          <td>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="flex-box">
+    <div>
+      <div class="main-info">
+        <div class="info-head">
+          公司概况
+        </div>
+        <div class="info-body">
+          <div class="table">
+            <ul>
+              <li><span>成立时间</span></li>
+              <li>fdsf</li>
+              <li><span>公司业绩起始日期</span></li>
+              <li>dsfde</li>
+            </ul>
+            <ul>
+              <li><span>公司管理规模（亿）</span></li>
+              <li>gfese</li>
+              <li><span>办公城市</span></li>
+              <li>fdsfs</li>
+            </ul>
+            <ul>
+              <li><span>办公地址</span></li>
+              <li style="width: 75%;">fdsfds</li>
+            </ul>
+            <ul>
+              <li><span>公司实缴资本(万)</span></li>
+              <li>grtdg</li>
+              <li><span>是否有投顾资质</span></li>
+              <li>gredtgr</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-350">
+      <table>
+        <colgroup>
+          <col width="130">
+          <col width="50">
+          <col width="">
+        </colgroup>
+        <tbody>
+        <tr style="height: 28px;">
+          <td><span>打分指标项</span></td>
+          <td><span>得分</span></td>
+          <td><span>备注</span></td>
+        </tr>
+        <tr>
+          <td><span>成立时间</span></td>
+          <td>
+          </td>
+          <td rowspan="3">
+            <div class="item" v-for="(item, index) in list" :key="index">{{item}}</div>
+            <button @click="add">添加</button>
+          </td>
+        </tr>
+        <tr>
+          <td><span>实缴资本</span></td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td><span>投顾资质</span></td>
+          <td>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <span class="note">IE浏览器下，table表格的方式会错位，ul li flex布局的方式则不会错位</span>
+</div>
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    list: []
+  },
+  methods: {
+    add: function () {
+      this.list.push(this.list.length+1)
+    }
+  }
+})
+</script>
+</html>
