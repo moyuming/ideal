@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>几种常用的通信方式</title>
+  <script src="/lib/vue/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <div><button @click="poll">长轮询</button></div>
+  <div>长轮询结果: {{value1}}</div>
+  <div><button @click="eventSource">EventSource</button></div>
+  <div>EventSource结果: {{value2}}</div>
+</div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      value1: '',
+      value2: '',
+    },
+    methods: {
+      poll: function () {
+        var vm = this
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', '/api/test/long-poll', true);
+        xhr.onreadystatechange = function () {
+          console.log(xhr.readyState);
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            vm.value1 = xhr.responseText;
+            vm.poll();
+          }
+        }
+        xhr.send();
+      },
+      eventSource: function () {
+        var vm = this
+        var eventSource = new EventSource('/api/test/eventSource');
+        eventSource.onmessage  = function(e){
+          vm.value2 = JSON.parse(e.data).ts;
+        }
+        eventSource.onerror  = function(err){
+          console.log(err);
+        }
+      }
+    }
+  })
+</script>
+</html>

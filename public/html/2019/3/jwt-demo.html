@@ -44,20 +44,20 @@
   $("#regist").click(function (event) {
     event.preventDefault()
     var user = $("#form-regist").serializeObject()
-    $.post('/login/signup', user, function (rs) {
+    $.post('/api/login/signup', user, function (rs) {
       console.log(rs);
     })
   })
   $("#login").click(function (event) {
     event.preventDefault()
     var user = $("#form-login").serializeObject()
-    $.post('/login/login', user, function (rs) {
+    $.post('/api/login/sigin', user, function (rs) {
       var token = rs.data.token
       localStorage.setItem('token', token)
     })
   })
   $("#list").click(function (event) {
-    $.get('/login/user', function (rs) {
+    $.get('/api/login/user', function (rs) {
       console.log(rs);
     })
   })

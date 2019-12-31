@@ -27,7 +27,7 @@ router.post('/signup', async function (req, res) {
     });
   }
 });
-router.post('/login', async function (req, res) {
+router.post('/sigin', async function (req, res) {
   let user = req.body;
   user = await User.findOne(user);
   if (user) {
