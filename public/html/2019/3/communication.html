@@ -42,10 +42,14 @@
         var vm = this
         var eventSource = new EventSource('/api/test/eventSource');
         eventSource.onmessage  = function(e){
+          console.log(e);
           vm.value2 = JSON.parse(e.data).ts;
         }
         eventSource.onerror  = function(err){
           console.log(err);
+        }
+        eventSource.onopen  = function(err){
+          console.log("ok");
         }
       },
       webSoket(){

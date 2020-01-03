@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser');
+const fs = require('fs');
 var compression = require('compression');
 let api = require('./api')
 const app = express()
@@ -8,10 +9,13 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.get('/', function (req, res) {
-    res.sendFile( __dirname + "/" + "index.html" );
+    res.sendFile(process.cwd() + "/" + "index.html" );
 })
 app.use('/api', api)
-var server = require('http').createServer(app);
+var server = require('http').createServer(app);//http服务
+/*var server = require('https').createServer({
+  pfx: fs.readFileSync('router/certificate.pfx')//https服务
+}, app);*/
 var io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
