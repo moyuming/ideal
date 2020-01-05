@@ -42,7 +42,6 @@
         var vm = this
         var eventSource = new EventSource('/api/test/eventSource');
         eventSource.onmessage  = function(e){
-          console.log(e);
           vm.value2 = JSON.parse(e.data).ts;
         }
         eventSource.onerror  = function(err){
@@ -53,8 +52,19 @@
         }
       },
       webSoket(){
-        let vm = this
-        const socket = io.connect('ws://localhost:3000');
+        var vm = this
+        // var socket = new WebSocket('ws://127.0.0.1:3000')
+        // socket.onmessage = function(event){ 
+        //     console.log(event)  
+        // }; 
+        // socket.onopen = function(event){ 
+        //     console.log('连接成功')  
+        //     socket.send("Hello world!");
+        // }; 
+        // socket.onclose = function(event){ 
+        //     console.log('连接关闭')
+        // }; 
+        var socket = io('wss://localhost:3000/');
         //监听与服务器端的连接成功事件
         socket.on('connect',function(){
             console.log('连接成功');

@@ -24,7 +24,7 @@ router.get('/eventSource', function (req, res) {
       retry: 20000, // 告诉客户端,如果断开连接后,20秒后再重试连接
       data: {ts: new Date().toLocaleTimeString()}
     })
-    sseStream.resume()
+    res.flush()
   }, 1000)
 
   res.on('close', () => {

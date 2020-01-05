@@ -12,10 +12,10 @@ app.get('/', function (req, res) {
     res.sendFile(process.cwd() + "/" + "index.html" );
 })
 app.use('/api', api)
-var server = require('http').createServer(app);//http服务
-/*var server = require('https').createServer({
+// var server = require('http').createServer(app);//http服务
+var server = require('https').createServer({
   pfx: fs.readFileSync('router/certificate.pfx')//https服务
-}, app);*/
+}, app);
 var io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
