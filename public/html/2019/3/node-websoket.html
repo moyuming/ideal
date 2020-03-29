@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var socket = new WebSocket('ws://localhost:8081/');
+        socket.onopen = function () {
+            console.log("成功建立连接.")
+            socket.send("Hello!");
+        };
+
+        socket.onerror = function () {
+            console.log("发生错误了")
+        }
+
+        socket.onclose = function () {
+            console.log("连接关闭了");
+            console.log("Was clean? " + event.wasClean + " Code=" + event.code + " Reason="
+                + event.reason);
+        };
+        socket.onmessage = function (event) {
+            var data = event.data;
+
+            console.log('接受到服务端消息：', data)
+        }; 
+    </script>
+</body>
+
+</html>
