@@ -1,3 +1,8 @@
+/**
+ * 计算n的阶乘，eg：n=5 5*4*3*2*1
+ * @param n
+ * @returns {*}
+ */
 function recurFib(n) {
   if (n < 2) {
     return n
@@ -52,13 +57,20 @@ function lcs(word1, word2) {
   }
 }
 
-
+/**
+ * 两数最大值
+ * @param a
+ * @param b
+ * @returns {*}
+ */
 function max(a, b) {
   return (a > b) ? a : b
 }
 
 /**
- * 背包问题动态规划法
+ * 背包问题动态规划法，。试想你是一个保险箱大盗，打开了一个装满奇珍
+ 异宝的保险箱，但是你必须将这些宝贝放入你的一个小背包中。保险箱中的物品规格和价
+ 值不同。你希望自己的背包装进的宝贝总价值最大
  * @param capacity 背包容量
  * @param size     尺寸数组
  * @param value    价值数组
@@ -89,10 +101,12 @@ function dKnapsack(capacity, size, value, n) {
 }
 
 /**
- * 贪心算法---找零问题
+ * 贪心算法---找零问题，你从商店购买了一些商品，找零 63 美分，店员要
+ 怎样给你这些零钱呢？如果店员根据贪心算法来找零的话，他会给你两个 25 美分、一个
+ 10 美分和三个 1 美分。在没有使用 50 美分的情况下这是最少的硬币数量。
  * @param origAmt 找的零钱
- * @param coins   数组，小零钱的个数
- * @returns {*}
+ * @param coins
+ * @returns {*}数组，每种小零钱的个数
  */
 function makeChange(origAmt, coins) {
   var remainAmt = 0

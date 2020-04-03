@@ -1,3 +1,4 @@
+// 必须要记住的算法：冒泡排序 选择排序 插入排序 快速排序
 function CArray(elements) {
     this.dataStore = elements
     this.pos = elements.length - 1
@@ -60,13 +61,24 @@ CArray.prototype = {
         }
         return retstr
     },
+  /**
+   * 两个索引的值调换位置
+   * @param arr
+   * @param index1
+   * @param index2
+   */
     swap: function (arr, index1, index2) {
         var temp = arr[index1]
         arr[index1] = arr[index2]
         arr[index2] = temp
     },
     /**
-     * 冒泡排序法，最慢的排序方式之一
+     * 冒泡排序法，最慢的排序方式之一，排序时，数据值会像气泡一样从数组的一端漂
+     浮到另一端。假设正在将一组数字按照升序排列，较大的值会浮动到数组的右侧，而较小
+     的值则会浮动到数组的左侧。之所以会产生这种现象是因为算法会多次在数组中移动，比
+     较相邻的数据，当左侧值大于右侧值时将它们进行互换。
+
+     快速记忆： 外循环，内循环，对比交换大小交换位置
      */
     bubbleSort: function () {
         var numElements = this.dataStore.length
@@ -81,13 +93,14 @@ CArray.prototype = {
     },
     /**
      * 选择排序法
+     * 快速记忆： 外循环，内循环，每次次选择最小或者最大的值
      */
     selectionSort: function () {
         var min
         for (var outer = 0; outer <= this.dataStore.length - 2; ++outer) {
             min = outer
             for (var inner = outer + 1;
-                 inner <= this.dataStore.length - 1; ++iner) {
+                 inner <= this.dataStore.length - 1; ++inner) {
                 if (this.dataStore[inner] < this.dataStore[min]) {
                     min = inner
                 }
@@ -97,7 +110,9 @@ CArray.prototype = {
         return this.dataStore
     },
     /**
-     * 插入排序法,是基本排序法中速度最快的
+     * 插入排序法,是基本排序法中速度最快的,类似于人类按数字或字母顺序对数据进行排序
+     *
+     * 快速记忆： 外循环，内循环，每次将拿出来的值放到合适的位置
      */
     insertionSort: function () {
         var temp, inner
@@ -113,7 +128,8 @@ CArray.prototype = {
         return this.dataStore
     },
     /**
-     * 希尔排序法，插入排序法的改善，希尔排序的工作原理是，通过定义一个间隔序列来表示在排序过程中进行比较的元素之
+     * 希尔排序法，插入排序法的改善，这时算法比较的就是相邻元素了，希尔排序的工作原理是，
+     * 通过定义一个间隔序列来表示在排序过程中进行比较的元素之
      间有多远的间隔。我们可以动态定义间隔序列，不过对于大部分的实际应用场景，算法
      要用到的间隔序列可以提前定义好。有一些公开定义的间隔序列，使用它们会得到不同
      的结果。在这里我们用到了 Marcin  Ciura 在他 2001 年发表的论文“Best  Increments  for  the
@@ -129,8 +145,9 @@ CArray.prototype = {
         }
         while (h >= 1) {
             for (var i = h; i < N; i++) {
+                //比较相邻元素
                 for (var j = i; j >= h && this.dataStore[j] < this.dataStore[j - h]; j -= h) {
-                    this.swap(this.dataStore, j,j - h)
+                    this.swap(this.dataStore, j, j - h)
                 }
             }
             h = (h - 1) / 3
