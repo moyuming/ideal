@@ -78,12 +78,12 @@ CArray.prototype = {
      的值则会浮动到数组的左侧。之所以会产生这种现象是因为算法会多次在数组中移动，比
      较相邻的数据，当左侧值大于右侧值时将它们进行互换。
 
-     快速记忆： 外循环，内循环，对比交换大小交换位置
+     快速记忆： 外循环递减，内循环递增，相邻值对比交换大小交换位置
      */
     bubbleSort: function () {
         var numElements = this.dataStore.length
-        for (var outer = numElements; outer >= 2; --outer) {
-            for (var inner = 0; inner <= outer - 1; ++inner) {
+        for (var outer = numElements; outer > 1; --outer) {
+            for (var inner = 0; inner < outer; ++inner) {
                 if (this.dataStore[inner] > this.dataStore[inner + 1]) {
                     this.swap(this.dataStore, inner, inner + 1)
                 }
@@ -97,15 +97,14 @@ CArray.prototype = {
      */
     selectionSort: function () {
         var min
-        for (var outer = 0; outer <= this.dataStore.length - 2; ++outer) {
+        for (var outer = 0; outer < this.dataStore.length - 1; ++outer) {
             min = outer
-            for (var inner = outer + 1;
-                 inner <= this.dataStore.length - 1; ++inner) {
+            for (var inner = outer + 1;inner < this.dataStore.length; ++inner) {
                 if (this.dataStore[inner] < this.dataStore[min]) {
                     min = inner
                 }
-                this.swap(this.dataStore, outer, min)
             }
+            this.swap(this.dataStore, outer, min)
         }
         return this.dataStore
     },
@@ -116,7 +115,7 @@ CArray.prototype = {
      */
     insertionSort: function () {
         var temp, inner
-        for (var outer = 1; outer <= this.dataStore.length - 1; ++outer) {
+        for (var outer = 1; outer < this.dataStore.length; ++outer) {
             temp = this.dataStore[outer]
             inner = outer
             while (inner > 0 && (this.dataStore[inner - 1] >= temp)) {
