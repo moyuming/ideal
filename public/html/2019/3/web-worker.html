@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web worker</title>
+    <style>
+        .aaa {
+            color: red;
+        }
+    </style>
+    <script>
+        var data = [15, 54, 2, 3, 8, 4, 6, 7, 14, 59, 65]
+        var worker = new Worker('./webWorkerExample.js')
+
+        worker.onmessage = function (event) {
+            console.log(event.data)
+        }
+        worker.onerror = function (event) {
+            console.log(event.data)
+        }
+        worker.postMessage(data)
+    </script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>

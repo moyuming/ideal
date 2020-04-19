@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexedDB</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var indexedDB = window.indexedDB || window.msIndexedDB || window.mozIndexedDB || window.webkitIndexedDB;
+    var request, database;
+
+    request = indexedDB.open("admin", 1);//带上版本号
+    request.onerror = function (event) {
+        console.log("Something bad happened while trying to open: " +
+            event.target.errorCode);
+    };
+    request.onupgradeneeded = function (event) {
+        //指定了一个更高的数据库版本时会触发
+        database = event.target.result;
+        var user = {
+            username: "007",
+            firstName: "James",
+            lastName: "Bond",
+            password: "foo"
+        };
+        var store = database.createObjectStore("users", { keyPath: "username" });
+        request = store.add(user);
+        request.onerror = function () {
+            console.log('添加数据失败！')
+        };
+        request.onsuccess = function () {
+            console.log('添加数据成功！')
+        };
+    }
+    request.onsuccess = function (event) {
+        database = event.target.result;
+        console.log("indexedDB数据库初始化完成. Database name: " + database.name +
+            ", Version: " + database.version);
+        var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
+        //创建一个事务，READ_ONLY（0）表示只读，READ_WRITE（1）表示读写，VERSION_CHANGE（2）表示改变。
+        var transaction = database.transaction("users", IDBTransaction.READ_WRITE);
+
+        var request = database.transaction("users").objectStore("users").get("007");
+        request.onerror = function (event) {
+            console.log("Did not get the object!");
+        };
+        request.onsuccess = function (event) {
+            var result = event.target.result;
+            console.log(result.firstName);    //"James" 
+        };
+    }
+
+</script>
+
+</html>
