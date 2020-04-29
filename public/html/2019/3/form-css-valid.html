@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>表单纯样式校验</title>
+  <style>
+    .demo {
+      width: 300px;
+      margin: auto;
+      text-align: left;
+    }
+    .demo h4 {
+      margin: .75em 0 .25em;
+      font-size: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      vertical-align: top;
+      box-sizing: border-box;
+    }
+
+    .cs-ques-ul {
+      counter-reset: quesIndex;/*计数器*/
+    }
+    .cs-ques-li {
+      display: table;
+      width: 100%;
+      position: relative;
+    }
+    .cs-ques-li::before {
+      counter-increment: quesIndex;
+      content: counter(quesIndex) ".";
+      position: absolute; top: .75em;
+      margin: 0 0 0 -20px;
+    }
+    .cs-caption {
+      /*为了让标题在上面显示*/
+      display: table-caption;
+      caption-side: top;
+    }
+
+    :optional ~ .cs-caption::after {
+      content: "（可选）";
+      color: gray;
+    }
+    :required{
+      outline: none;/*默认红色难看*/
+    }
+    :required ~ .cs-caption::after {
+      content: "（必选）";
+      color: red;
+    }
+
+
+    [type="submit"] {
+      margin-left: 22px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="demo">
+  <form>
+    <fieldset>
+      <legend>问卷调查</legend>
+      <ol class="cs-ques-ul">
+        <li class="cs-ques-li">
+          <input type="radio" id="ques1-1" name="ques1" required><label for="ques1-1">1-3年</label>
+          <input type="radio" id="ques1-2" name="ques1"><label for="ques1-2">3-5年</label>
+          <input type="radio" id="ques1-3" name="ques1"><label for="ques1-3">5年以上</label>
+          <h4 class="cs-caption">你从事前端几年了？</h4>
+        </li>
+        <li class="cs-ques-li">
+          <input type="radio" id="ques2-1" name="ques2" required><label for="ques2-1">1-3小时</label>
+          <input type="radio" id="ques2-2" name="ques2"><label for="ques2-2">3-5小时</label>
+          <input type="radio" id="ques2-3" name="ques2"><label for="ques2-3">5小时以上</label>
+          <h4 class="cs-caption">你每周多少业余时间用来学习前端技术？</h4>
+        </li>
+        <li class="cs-ques-li">
+          <input type="radio" id="ques3-1" name="ques3" required><label for="ques3-1">1-3本</label>
+          <input type="radio" id="ques3-2" name="ques3"><label for="ques3-2">3-5本</label>
+          <input type="radio" id="ques3-3" name="ques3"><label for="ques3-3">5本以上</label>
+          <h4 class="cs-caption">你每年买多少本前端相关书籍？</h4>
+        </li>
+        <li class="cs-ques-li">
+          <textarea></textarea>
+          <h4 class="cs-caption">有什么其他想说的？</h4>
+        </li>
+      </ol>
+      <p><input type="submit" value="提交"></p>
+    </fieldset>
+  </form>
+
+</div>
+</body>
+</html>

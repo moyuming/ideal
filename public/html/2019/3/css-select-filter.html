@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>属性选择器与搜索过滤实例页面</title>
+  <style>
+    .demo {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+    }
+    input {
+      width: 200px;
+      padding: 10px;
+      font-size: 1em;
+      font-family: inherit;
+    }
+    .demo ul {
+      width: 200px;
+      margin: 1em auto;
+      padding: 0;
+      text-align: left;
+      list-style-type: none;
+    }
+    [data-search] {
+      border: 1px solid #ddd;
+      margin-top: -1px;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="demo">
+  <input id="input" type="search" placeholder="输入城市名称或拼音" autocomplete="off">
+  <ul>
+    <li data-search="重庆市chongqing">重庆市</li>
+    <li data-search="哈尔滨市haerbing">哈尔滨市</li>
+    <li data-search="长春市changchun">长春市</li>
+    <li data-search="兰州市lanzhou">兰州市</li>
+    <li data-search="北京市beijing">北京市</li>
+    <li data-search="杭州市hangzhou">杭州市</li>
+    <li data-search="长沙市changsha">长沙市</li>
+    <li data-search="沈阳市shenyang">沈阳市</li>
+    <li data-search="成都市chengdu">成都市</li>
+    <li data-search="合肥市hefei">合肥市</li>
+    <li data-search="天津市tianjin">天津市</li>
+    <li data-search="西安市xian">西安市</li>
+    <li data-search="武汉市wuhan">武汉市</li>
+    <li data-search="济南市jinan">济南市</li>
+    <li data-search="广州市guangzhou">广州市</li>
+    <li data-search="南京市nanjing">南京市</li>
+    <li data-search="上海市shanghai">上海市</li>
+    <li data-search="昆明市kunming">昆明市</li>
+    <li data-search="郑州市zhangzhou">郑州市</li>
+    <li data-search="贵阳市guiyang">贵阳市</li>
+    <li data-search="西宁市xining">西宁市</li>
+    <li data-search="海口市haikou">海口市</li>
+    <li data-search="南昌市nanchang">南昌市</li>
+    <li data-search="香港 特区xianggang">香港 特区</li>
+    <li data-search="澳门 特区aomen">澳门 特区</li>
+  </ul>
+</div>
+</body>
+<script>
+  var eleStyle = document.createElement('style');
+  document.head.appendChild(eleStyle);
+  // 文本框输入
+  input.addEventListener("input", function() {
+    var value = this.value.trim();
+    eleStyle.innerHTML = value ? '[data-search]:not([data-search*="'+ value +'" i]) { display: none; }' : '';
+  });
+</script>
+</html>

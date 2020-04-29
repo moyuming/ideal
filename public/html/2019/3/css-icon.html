@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css小图标</title>
+  <style>
+    .icon-menu {
+      display: inline-block;
+      width: 40px;
+      height: 2px;
+      padding: 13px 0;
+      border-top: 2px solid;
+      border-bottom: 2px solid;
+      background-color: currentColor;
+      background-clip: content-box;
+    }
+    .icon-menu-1 {
+      width: 40px;
+      height: 7px;
+      border-top: 20px double;
+      border-bottom: 7px solid;
+    }
+    .icon-dot {
+      display: inline-block;
+      width: 20px; height: 20px;
+      padding: 5px;
+      border: 4px solid;
+      border-radius: 50%;
+      background-color: currentColor;
+      background-clip: content-box;
+    }
+    .add {
+      display: inline-block;
+      width: 76px; height: 76px;
+      color: #ccc;
+      border: 2px dashed;
+      text-indent: -12em;
+      transition: color .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .add:hover {
+      color: #34538b;
+    }
+    .add::before, .add::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .add::before {
+      width: 20px;
+      border-top: 4px solid;
+      margin: -2px 0 0 -10px;
+    }
+    .add::after {
+      height: 20px;
+      border-left: 4px solid;
+      margin: -10px 0 0 -2px;
+  </style>
+</head>
+<body>
+<div class="icon-menu"></div>
+<div class="icon-menu-1"></div>
+<div class="icon-dot"></div>
+<a href class="add" title="继续上传">
+  添加图片
+</a>
+</body>
+</html>

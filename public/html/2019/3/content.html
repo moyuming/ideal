@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>content开启闭合符号生成</title>
+  <style>
+    .ask:before {
+      content:'提问：“';
+    }
+    .answer:before {
+      content:'回答：“';
+    }
+    .ask:after,
+    .answer:after {
+      content: '”';
+    }
+    /*.ask {
+      quotes:'提问：“' '”';
+    }
+    .answer {
+      quotes:'回答：“' '”';
+    }
+    .ask:before,
+    .answer:before {
+      content: open-quote;
+    }
+    .ask:after,
+    .answer:after {
+      content: close-quote;
+    }*/
+  </style>
+</head>
+<body>
+<p class="ask">为什么 open-quote/close-quote很少使用？</p>
+<p class="answer">因为直接使用字符更干脆！</p>
+</body>
+</html>

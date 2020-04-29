@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>滚动条出现页面不跳动</title>
+  <style>
+    /*:root IE9+下表示html*/
+    html {
+      overflow-y: scroll;   /* for IE8 */
+    }
+    :root {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    :root body {
+      position: absolute;
+    }
+    body {
+      width: 100vw;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+</body>
+</html>
