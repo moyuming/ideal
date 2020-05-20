@@ -42,13 +42,13 @@
         var vm = this
         var eventSource = new EventSource('/api/test/eventSource');
         eventSource.onmessage  = function(e){
-          vm.value2 = JSON.parse(e.data).ts;
+          vm.value2 = e.data;
         }
         eventSource.onerror  = function(err){
-          console.log(err);
+          console.error("事件流连接失败");
         }
         eventSource.onopen  = function(err){
-          console.log("ok");
+          console.log("事件流连接成功");
         }
       },
       webSoket(){

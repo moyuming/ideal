@@ -29,4 +29,5 @@ gulp.task('server', function() {
         })
     })
 })
-gulp.task('default', ['server'])
+// gulp.task('default', ['server'])//gulp3
+gulp.task('default', gulp.series('server'))//gulp4
