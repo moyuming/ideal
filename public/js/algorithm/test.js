@@ -1,17 +1,13 @@
-function qSort(arr) {
-  if (arr.length == 0) {
-    return []
-  }
-  var left = []
-  var right = []
-  var pivot = arr[0]
-  for (var i = 1; i < arr.length; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i])
-    } else {
-      right.push(arr[i])
+var data = [72, 54, 59, 30, 31, 78, 2, 77, 82, 72];
+var length = data.length;
+for (var i = length; i > 1; i--) {
+  for (var j = 0; j < i - 1; j++) {
+    var a = data[j];
+    var b = data[j + 1];
+    if (a > b) {
+      data[j + 1] = a;
+      data[j] = b;
     }
   }
-  // 递归算法
-  return arguments.callee(left).concat(pivot, arguments.callee(right))
 }
+console.log(data);
