@@ -10,6 +10,8 @@
 <div id="app">
   <div><button @click="poll">长轮询</button></div>
   <div>长轮询结果: {{value1}}</div>
+  <div><button @click="httpStream">http流</button></div>
+  <div>http流结果: {{value4}}</div>
   <div><button @click="eventSource">EventSource</button></div>
   <div>EventSource结果: {{value2}}</div>
   <div><button @click="webSoket">webSoket</button></div>
@@ -23,11 +25,12 @@
       value1: '',
       value2: '',
       value3: '',
+      value4: '',
     },
     methods: {
       poll: function () {
         var vm = this
-        let xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
         xhr.open('GET', '/api/test/long-poll', true);
         xhr.onreadystatechange = function () {
           console.log(xhr.readyState);
@@ -38,20 +41,42 @@
         }
         xhr.send();
       },
+      httpStream: function () {
+        var vm = this
+        var received = 0
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/api/test/eventSource');
+        xhr.onreadystatechange = function () {
+          var result;
+          if (xhr.readyState == 3){
+
+            //只取得最新数据并调整计数器
+            result = xhr.responseText.substring(received);
+            received += result.length;
+
+            vm.value4 = result
+            console.log(xhr.responseText);
+
+          } else if (xhr.readyState == 4){
+            console.log(xhr.responseText);
+          }
+        }
+        xhr.send();
+      },
       eventSource: function () {
         var vm = this
         var eventSource = new EventSource('/api/test/eventSource');
         eventSource.onmessage  = function(e){
-          vm.value2 = JSON.parse(e.data).ts;
+          vm.value2 = e.data;
         }
         eventSource.onerror  = function(err){
-          console.log(err);
+          console.error("事件流连接失败");
         }
         eventSource.onopen  = function(err){
-          console.log("ok");
+          console.log("事件流连接成功");
         }
       },
-      webSoket(){
+      webSoket: function(){
         var vm = this
         // var socket = new WebSocket('ws://127.0.0.1:3000')
         // socket.onmessage = function(event){ 

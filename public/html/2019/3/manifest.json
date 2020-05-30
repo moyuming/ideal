@@ -1,0 +1,11 @@
+{
+  "name":"珠峰课堂", // 应用名称
+  "short_name":"课堂", // 桌面应用的名称  ✓
+  "display":"standalone", // fullScreen (standalone) minimal-ui browser ✓
+  "start_url":"", // 打开时的网址  ✓
+  "icons":[{
+    "src": "/images/small/mm4.jpg"
+  }], // 设置桌面图片 icon图标 修改图标需要重新添加到桌面icons:[{src,sizes,type}]
+  "background_color":"#aaa", // 启动画面颜色
+  "theme_color":"#aaa" // 状态栏的颜色
+}

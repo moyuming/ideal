@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>:default伪类推荐应用</title>
+  <style>
+    .demo {
+      width: 160px;
+      margin: auto;
+      text-align: left;
+    }
+    input:default + label::after {
+      content: "（推荐）";
+    }
+  </style>
+</head>
+<body>
+<div class="demo">
+  请选择支付方式：
+  <p>
+    <input type="radio" name="pay" id="pay0" value="0"> <label for="pay0">支付宝</label>
+  </p>
+  <p>
+    <input type="radio" name="pay" id="pay1" value="1" checked=""> <label for="pay1">微信</label>
+  </p>
+  <p>
+    <input type="radio" name="pay" id="pay2" value="2"> <label for="pay2">银行卡</label>
+  </p>
+
+</div>
+</body>
+</html>

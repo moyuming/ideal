@@ -15,7 +15,7 @@ router.get('/long-poll', function (req, res) {
 })
 router.get('/eventSource', function (req, res) {
   console.log('/eventSource')
-  const sseStream = new SseStream(req);
+  /*const sseStream = new SseStream(req);
   sseStream.pipe(res);
   const pusher = setInterval(() => {
     sseStream.write({
@@ -31,6 +31,23 @@ router.get('/eventSource', function (req, res) {
     console.log('close')
     clearInterval(pusher);
     sseStream.unpipe(res);
+  })*/
+  // server-sent event stream
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Cache-Control', 'no-cache')
+
+  //2秒钟发送一次
+  var timer = setInterval(function () {
+    //如果要传输对象，可以转成字符串返回客户端后再解析字符串
+    let str = 'data:' + new Date().toLocaleTimeString()+'\n\n'
+    res.write(str)
+    // res.write('data: ping\n\n')
+    //重要步骤，刷新到客户端
+    res.flush()
+  }, 2000)
+
+  res.on('close', function () {
+    clearInterval(timer)
   })
 })
 
