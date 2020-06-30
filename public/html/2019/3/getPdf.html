@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>nodejs文件下载（后端返回buffer,前端下载）</title>
+  <script src="/lib/jquery/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<button id="print">打印</button>
+<script>
+  $('#print').click(function (event) {
+    $.get("/api/test/getPdf",function (res) {
+      console.log(res);
+      var data = res.result;
+      var ab = new ArrayBuffer(data.content.data.length);
+      var view = new Uint8Array(ab);
+      for (var i = 0; i < data.content.data.length; ++i) {
+        view[i] = data.content.data[i];
+      }
+      var blob = new Blob([ab], {
+        type: "application/pdf"
+      });
+      var filename = "测试PDF";
+      if (window.navigator.msSaveOrOpenBlob) {
+        navigator.msSaveBlob(blob, filename);
+      } else {
+        var link = document.createElement("a");
+        var body = document.querySelector("body");
+
+        link.href = URL.createObjectURL(blob); // 创建对象url
+        link.download = filename;
+
+        // fix Firefox
+        link.style.display = "none";
+        body.appendChild(link);
+        link.click();
+        body.removeChild(link);
+        window.URL.revokeObjectURL(link.href); // 通过调用 URL.createObjectURL() 创建的 URL 对象
+      }
+    })
+  })
+</script>
+</body>
+</html>
