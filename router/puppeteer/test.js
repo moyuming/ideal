@@ -1,5 +1,6 @@
 //https://zhaoqize.github.io/puppeteer-api-zh_CN/
 //https://github.com/puppeteer/puppeteer
+//https://zhaoqize.github.io/puppeteer-api-zh_CN/#?product=Puppeteer&version=v4.0.1&show=api-pagepdfoptions
 const puppeteer = require('puppeteer');
 
 (async () => {

@@ -49,5 +49,24 @@ router.get('/eventSource', function (req, res) {
     clearInterval(timer)
   })
 })
-
+router.get('/getPdf', async function (req, res) {
+  const puppeteer = require('puppeteer');
+  const browser = await puppeteer.launch({
+    headless: true
+  })
+  const page = await browser.newPage()
+  await page.goto('http://www.baidu.com', {waitUntil: 'networkidle2'});
+  /*await page.screenshot({
+    path: 'd:/tmp/baidu.png'
+  })*/
+  // const content = await page.pdf({path: 'd:/tmp/baidu.pdf', format: 'A4'});
+  const content = await page.pdf({format: 'A4'});//不在服务器生成文件
+  console.log(content);
+  await browser.close();
+  return res.send({
+    result: {
+      content
+    },
+  });
+})
 module.exports = router
