@@ -1,6 +1,5 @@
 var express = require('express')
 var router = express.Router()
-const SseStream = require('ssestream');
 let sendCount = 1;
 // 路由的中间件
 router.use(function timeLog (req, res, next) {
